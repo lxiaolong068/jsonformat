@@ -24,6 +24,7 @@ const TextEditor = dynamic(() => import("src/features/editor/TextEditor"), {
 const LiveEditor = dynamic(() => import("src/features/editor/LiveEditor"), {
   ssr: false,
 });
+const Editor = dynamic(() => import("@monaco-editor/react"), { ssr: false });
 
 const queryClient = new QueryClient({
   defaultOptions: {

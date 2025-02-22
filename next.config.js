@@ -10,7 +10,7 @@ const config = {
   output: "export",
   reactStrictMode: false,
   productionBrowserSourceMaps: true,
-  trailingSlash: true,  
+  trailingSlash: true,
   experimental: {
     optimizePackageImports: ["reaflow"],
   },
@@ -24,6 +24,26 @@ const config = {
 
     if (!isServer) {
       config.output.environment = { ...config.output.environment, asyncFunction: true };
+
+      // 优化：将 node_modules 中的依赖拆分为 vendors chunk
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            enforce: true,
+          },
+        },
+      };
+
+      // 启用文件系统缓存，加速后续构建
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
+      };
     }
 
     return config;
@@ -35,11 +55,11 @@ const configExport = () => {
     ...config,
     exportPathMap: async function () {
       return {
-        '/': { page: '/' },
-        '/editor': { page: '/editor' },
-        '/widget': { page: '/widget' },
-        '/docs': { page: '/docs' },
-        '/404': { page: '/404' },
+        "/": { page: "/" },
+        "/editor": { page: "/editor" },
+        "/widget": { page: "/widget" },
+        "/docs": { page: "/docs" },
+        "/404": { page: "/404" },
       };
     },
   };
