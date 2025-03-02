@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import {
   Button,
   Container,
@@ -74,6 +76,10 @@ const StyledDottedContainer = styled.div`
 `;
 
 export const Section1 = () => {
+  const { t } = useTranslation('common');
+  const router = useRouter();
+  const { locale } = router;
+  
   return (
     <Container size="xl" py="80">
       <Flex justify="center" align="center">
@@ -89,11 +95,10 @@ export const Section1 = () => {
             order={2}
             c="gray.9"
           >
-            Don&apos;t waste time with JSON formatters
+            {t('subtitle')}
           </Title>
           <Text my="md" c="gray.6" fz={16} maw={510}>
-            The days of getting lost in lines of code are over. JsonFormat gives you the most
-            optimal view of your data so you can make insights faster than ever.
+            {t('description')}
           </Text>
           <List
             fz={{
@@ -106,15 +111,16 @@ export const Section1 = () => {
             icon={<LuBadgeCheck size="20" />}
           >
             <SimpleGrid w="fit-content" cols={2}>
-              <List.Item>Clear, concise data presentation</List.Item>
-              <List.Item>Fast decision-making</List.Item>
-              <List.Item>Grasp patterns and relationships faster</List.Item>
-              <List.Item>Share insights with teams easier</List.Item>
+              <List.Item>{t('features.clearPresentation')}</List.Item>
+              <List.Item>{t('features.fastDecision')}</List.Item>
+              <List.Item>{t('features.graspPatterns')}</List.Item>
+              <List.Item>{t('features.shareInsights')}</List.Item>
             </SimpleGrid>
           </List>
-          <Link href="/editor" prefetch={false}>
+          {/* 修改这里的链接，添加语言前缀 */}
+          <Link href={`/${locale !== 'en' ? locale + '/' : ''}editor`} prefetch={false}>
             <Button color="#202842" size="lg" radius="md" w="fit-content" mt="sm">
-              Use for free
+              {t('useForFree')}
             </Button>
           </Link>
         </Stack>

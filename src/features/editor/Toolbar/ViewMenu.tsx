@@ -7,6 +7,10 @@ import toast from "react-hot-toast";
 import { CgChevronDown } from "react-icons/cg";
 import { TiFlowMerge } from "react-icons/ti";
 import { VscExpandAll, VscCollapseAll, VscTarget } from "react-icons/vsc";
+import { MdCompare } from "react-icons/md";
+import { LuGlobe } from "react-icons/lu";
+// 导入翻译hook
+import { useTranslation } from 'next-i18next';
 import { ViewMode } from "src/enums/viewMode.enum";
 import useGraph from "src/features/editor/views/GraphView/stores/useGraph";
 import useToggleHide from "src/hooks/useToggleHide";
@@ -43,6 +47,8 @@ export const ViewMenu = () => {
   const graphCollapsed = useGraph(state => state.graphCollapsed);
   const viewMode = useConfig(state => state.viewMode);
   const setViewMode = useConfig(state => state.setViewMode);
+  // 使用翻译函数
+  const { t } = useTranslation('editor');
 
   const toggleDirection = () => {
     const nextDirection = getNextDirection(direction || "RIGHT");
@@ -80,7 +86,7 @@ export const ViewMenu = () => {
       <Menu.Target>
         <StyledToolElement onClick={() => gaEvent("show_view_menu")}>
           <Flex align="center" gap={3}>
-            View <CgChevronDown />
+            {t('editor.toolbar.view')} <CgChevronDown />
           </Flex>
         </StyledToolElement>
       </Menu.Target>
@@ -99,44 +105,47 @@ export const ViewMenu = () => {
           ]}
           fullWidth
         />
-        {viewMode === ViewMode.Graph && (
-          <>
-            <Menu.Item
-              mt="xs"
-              fz={12}
-              onClick={() => {
-                toggleDirection();
-                gaEvent("rotate_layout", { label: direction });
-              }}
-              leftSection={<StyledFlowIcon rotate={rotateLayout(direction || "RIGHT")} />}
-              rightSection={
-                <Text ml="md" fz={10} c="dimmed">
-                  {coreKey} Shift D
-                </Text>
-              }
-            >
-              Rotate Layout
-            </Menu.Item>
-            <Menu.Item
-              fz={12}
-              onClick={() => {
-                toggleExpandCollapseGraph();
-                gaEvent("expand_collapse_graph", { label: graphCollapsed ? "expand" : "collapse" });
-              }}
-              leftSection={graphCollapsed ? <VscExpandAll /> : <VscCollapseAll />}
-              rightSection={
-                <Text ml="md" fz={10} c="dimmed">
-                  {coreKey} Shift C
-                </Text>
-              }
-            >
-              {graphCollapsed ? "Expand" : "Collapse"} Graph
-            </Menu.Item>
-            <Menu.Item fz={12} onClick={focusFirstNode} leftSection={<VscTarget />}>
-              Focus to First Node
-            </Menu.Item>
-          </>
-        )}
+        <Menu.Divider />
+        <Menu.Item
+          fz={12}
+          leftSection={<StyledFlowIcon rotate={rotateLayout(direction || "RIGHT")} />}
+          onClick={toggleDirection}
+          rightSection={<Text size="xs" c="dimmed">{`${coreKey}+Shift+D`}</Text>}
+        >
+          {t('editor.viewMenu.changeDirection')}
+        </Menu.Item>
+        <Menu.Item
+          fz={12}
+          leftSection={graphCollapsed ? <VscExpandAll /> : <VscCollapseAll />}
+          onClick={toggleExpandCollapseGraph}
+          rightSection={<Text size="xs" c="dimmed">{`${coreKey}+Shift+C`}</Text>}
+        >
+          {graphCollapsed ? t('editor.viewMenu.expandGraph') : t('editor.viewMenu.collapseGraph')}
+        </Menu.Item>
+        <Menu.Item fz={12} leftSection={<VscTarget />} onClick={focusFirstNode}>
+          {t('editor.viewMenu.focusRootNode')}
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item
+          fz={12}
+          leftSection={<MdCompare />}
+          onClick={() => {
+            setVisible("CompareModal", true);
+            gaEvent("open_compare_modal");
+          }}
+        >
+          {t('editor.viewMenu.compareJSON')}
+        </Menu.Item>
+        <Menu.Item
+          fz={12}
+          leftSection={<LuGlobe />}
+          onClick={() => {
+            setVisible("LiveCollabModal", true);
+            gaEvent("open_live_collab_modal");
+          }}
+        >
+          {t('editor.viewMenu.liveCollaboration')}
+        </Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );

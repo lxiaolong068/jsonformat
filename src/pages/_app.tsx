@@ -1,5 +1,7 @@
 import React from "react";
 import type { AppProps } from "next/app";
+// 恢复 next-i18next 导入
+import { appWithTranslation } from 'next-i18next';
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/code-highlight/styles.css";
@@ -10,6 +12,8 @@ import { Toaster } from "react-hot-toast";
 import GlobalStyle from "src/constants/globalStyle";
 import { SEO } from "src/constants/seo";
 import { lightTheme } from "src/constants/theme";
+// 导入 LanguageProvider
+import { LanguageProvider } from "src/contexts/LanguageContext";
 
 const theme = createTheme({
   autoContrast: true,
@@ -52,7 +56,7 @@ const theme = createTheme({
 
 const IS_PROD = process.env.NODE_ENV === "production";
 
-function JsonCrack({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <NextSeo {...SEO} />
@@ -65,28 +69,30 @@ function JsonCrack({ Component, pageProps }: AppProps) {
       />
       <MantineProvider defaultColorScheme="light" theme={theme}>
         <ThemeProvider theme={lightTheme}>
-          <Toaster
-            position="bottom-right"
-            containerStyle={{
-              bottom: 34,
-              right: 8,
-              fontSize: 14,
-            }}
-            toastOptions={{
-              style: {
-                background: "#4D4D4D",
-                color: "#B9BBBE",
-                borderRadius: 4,
-              },
-            }}
-          />
-          <GlobalStyle />
-          {IS_PROD && <GoogleAnalytics trackPageViews />}
-          <Component {...pageProps} />
+          <LanguageProvider>
+            <Toaster
+              position="bottom-right"
+              containerStyle={{
+                bottom: 34,
+                right: 8,
+                fontSize: 14,
+              }}
+              toastOptions={{
+                style: {
+                  background: "#4D4D4D",
+                  color: "#B9BBBE",
+                  borderRadius: 4,
+                },
+              }}
+            />
+            <GlobalStyle />
+            {IS_PROD && <GoogleAnalytics trackPageViews />}
+            <Component {...pageProps} />
+          </LanguageProvider>
         </ThemeProvider>
       </MantineProvider>
     </>
   );
 }
 
-export default JsonCrack;
+export default appWithTranslation(App);

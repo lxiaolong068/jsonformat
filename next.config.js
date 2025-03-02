@@ -2,15 +2,18 @@ const { withSentryConfig } = require("@sentry/nextjs");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
+// 恢复i18n导入
+const { i18n } = require('./next-i18next.config');
 
 /**
  * @type {import('next').NextConfig}
  */
 const config = {
-  output: "export",
   reactStrictMode: false,
   productionBrowserSourceMaps: true,
   trailingSlash: true,
+  // 恢复i18n配置
+  i18n,
   experimental: {
     optimizePackageImports: ["reaflow"],
   },
@@ -44,6 +47,9 @@ const config = {
           config: [__filename],
         },
       };
+      
+      // 配置热更新 - 移除自定义热更新路径配置
+      // 让Next.js使用默认的热更新文件路径
     }
 
     return config;

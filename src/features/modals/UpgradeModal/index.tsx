@@ -15,7 +15,7 @@ import {
   Anchor,
 } from "@mantine/core";
 import Cookie from "js-cookie";
-import { LuCheckCircle } from "react-icons/lu";
+import { FaCheckCircle } from "react-icons/fa";
 import useConfig from "src/store/useConfig";
 
 export const UpgradeModal = ({ opened, onClose }: ModalProps) => {
@@ -59,7 +59,7 @@ export const UpgradeModal = ({ opened, onClose }: ModalProps) => {
             spacing="4"
             icon={
               <ThemeIcon variant="transparent" radius="xl" size="sm" color="green">
-                <LuCheckCircle size="16" />
+                <FaCheckCircle size="16" />
               </ThemeIcon>
             }
           >

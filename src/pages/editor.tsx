@@ -8,6 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Allotment } from "allotment";
 import "allotment/dist/style.css";
 import { NextSeo } from "next-seo";
+// 导入next-i18next的serverSideTranslations函数
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 import { SEO } from "src/constants/seo";
 import { darkTheme, lightTheme } from "src/constants/theme";
 import { BottomBar } from "src/features/editor/BottomBar";
@@ -66,6 +69,8 @@ const EditorPage = () => {
   const { setColorScheme } = useMantineColorScheme();
   const checkEditorSession = useFile(state => state.checkEditorSession);
   const darkmodeEnabled = useConfig(state => state.darkmodeEnabled);
+  // 使用useTranslation钩子获取翻译函数
+  const { t } = useTranslation('editor');
 
   useEffect(() => {
     if (isReady) checkEditorSession(query?.json);
@@ -79,8 +84,8 @@ const EditorPage = () => {
     <>
       <NextSeo
         {...SEO}
-        title="Editor | JsonFormat"
-        description="JsonFormat Editor is a tool for visualizing into graphs, analyzing, editing, formatting, querying, transforming and validating JSON, CSV, YAML, XML, and more."
+        title={t('editor.title')}
+        description={t('editor.description')}
         canonical="https://jsonformat.help/editor"
       />
       <ThemeProvider theme={darkmodeEnabled ? darkTheme : lightTheme}>
@@ -102,6 +107,15 @@ const EditorPage = () => {
       </ThemeProvider>
     </>
   );
+};
+
+// 添加getStaticProps函数以支持国际化
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'editor'])),
+    },
+  };
 };
 
 export default EditorPage;

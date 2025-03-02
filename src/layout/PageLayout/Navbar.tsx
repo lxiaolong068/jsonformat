@@ -1,9 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { Button, Menu, type MenuItemProps, Text, Stack } from "@mantine/core";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 import styled from "styled-components";
 import { LuChevronDown } from "react-icons/lu";
 import { JSONCrackLogo } from "../JsonCrackLogo";
+import { useTranslation } from 'next-i18next';
 
 const StyledNavbarWrapper = styled.div`
   z-index: 3;
@@ -60,6 +62,7 @@ const Center = styled.div`
 `;
 
 export const Navbar = () => {
+  const { t } = useTranslation('common');
   return (
     <StyledNavbarWrapper className="navbar">
       <StyledNavbar>
@@ -77,7 +80,7 @@ export const Navbar = () => {
             radius="md"
             rel="noopener"
           >
-            VS Code
+            {t('vsCode')}
           </Button>
           <Button
             component="a"
@@ -89,7 +92,7 @@ export const Navbar = () => {
             radius="md"
             rel="noopener"
           >
-            Open Source
+            {t('openSource')}
           </Button>
           <Menu withArrow shadow="sm">
             <Menu.Target>
@@ -101,40 +104,40 @@ export const Navbar = () => {
                 radius="md"
                 rightSection={<LuChevronDown />}
               >
-                Tools
+                {t('tools')}
               </Button>
             </Menu.Target>
             <Menu.Dropdown maw={300} bg="white">
               <StyledMenuItem component={Link} prefetch={false} href="/converter/json-to-yaml">
                 <Stack gap="2">
                   <Text c="black" size="sm" fw={600}>
-                    Converter
+                    {t('converter')}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    Convert JSON to YAML, CSV to JSON, YAML to XML, and more.
+                    {t('converterDesc')}
                   </Text>
                 </Stack>
               </StyledMenuItem>
               <StyledMenuItem component={Link} prefetch={false} href="/type/json-to-rust">
                 <Stack gap="2">
                   <Text c="black" size="sm" fw={600}>
-                    Generate Types
+                    {t('generateTypes')}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    Generate TypeScript types, Golang structs, Rust, and more.
+                    {t('generateTypesDesc')}
                   </Text>
                 </Stack>
               </StyledMenuItem>
               <StyledMenuItem component={Link} prefetch={false} href="/tools/json-schema">
                 <Stack gap="2">
                   <Text c="black" size="sm" fw={600}>
-                    JSON Schema
+                    {t('jsonSchema')}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    Generate JSON schema from JSON data.
+                    {t('jsonSchemaDesc1')}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    Generate JSON data from JSON schema.
+                    {t('jsonSchemaDesc2')}
                   </Text>
                 </Stack>
               </StyledMenuItem>
@@ -142,6 +145,7 @@ export const Navbar = () => {
           </Menu>
         </Center>
         <Right>
+          <LanguageSwitcher />
           <Button
             component="a"
             href="https://todiagram.com"
@@ -151,7 +155,7 @@ export const Navbar = () => {
             radius="md"
             rel="noopener"
           >
-            Upgrade
+            {t('upgrade')}
           </Button>
           <Button
             radius="md"
@@ -161,7 +165,7 @@ export const Navbar = () => {
             visibleFrom="sm"
             size="md"
           >
-            Editor
+            {t('editor')}
           </Button>
         </Right>
       </StyledNavbar>

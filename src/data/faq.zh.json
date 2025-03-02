@@ -1,0 +1,38 @@
+[
+  {
+    "title": "什么是JsonFormat，它有什么功能？",
+    "content": "JsonFormat是一个多功能在线工具，旨在可视化和分析各种数据格式，包括JSON、YAML、CSV、XML等。它将复杂的数据转换为直观的图表和树形视图，非常适合开发人员、数据分析师以及任何处理结构化数据的人使用。"
+  },
+  {
+    "title": "JsonFormat是免费的吗？",
+    "content": "是的，JsonFormat是一个永久免费的开源在线工具。如需高级功能，您可以使用ToDiagram.com"
+  },
+  {
+    "title": "我的数据安全吗？",
+    "content": "绝对安全！JsonFormat优先考虑您的数据隐私。当您将数据粘贴或导入到编辑器中时，它仅在您的浏览器上处理以创建可视化效果，而不会进入我们的服务器。除非您选择手动上传，否则您的数据将完全保密，不会存储在任何地方。"
+  },
+  {
+    "title": "我可以使用JsonFormat将JSON转换为其他格式吗？",
+    "content": "是的，JsonFormat提供强大的数据转换功能。您可以轻松地将JSON转换为YAML，XML转换为JSON，CSV转换为JSON以及其他流行格式。"
+  },
+  {
+    "title": "支持哪些数据格式？",
+    "content": "支持多种数据格式，包括JSON、YAML、XML、CSV和TOML。"
+  },
+  {
+    "title": "我可以可视化多大的数据？",
+    "content": "它支持约300 KB的数据。具体可能因数据的复杂性和您的硬件而异。"
+  },
+  {
+    "title": "我可以导出生成的图表吗？",
+    "content": "是的，您可以将生成的图表导出为PNG、JPEG或SVG文件。"
+  },
+  {
+    "title": "如何使用VS Code扩展？",
+    "content": "您可以使用VS Code扩展直接在编辑器中可视化JSON数据。从VS Code市场安装扩展，并按照扩展页面上的说明进行操作。"
+  },
+  {
+    "title": "我之前订阅了高级计划，它去哪了？",
+    "content": "我们已将高级功能移至ToDiagram.com。您可以使用相同的凭据访问高级功能或管理您的订阅。"
+  }
+]

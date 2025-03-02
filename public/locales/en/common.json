@@ -1,0 +1,13 @@
+{
+  "title": "JSON Crack",
+  "subtitle": "Don't waste time with JSON formatters",
+  "description": "The days of getting lost in lines of code are over. JsonFormat gives you the most optimal view of your data so you can make insights faster than ever.",
+  "useForFree": "Use for free",
+  "features": {
+    "clearPresentation": "Clear, concise data presentation",
+    "fastDecision": "Fast decision-making",
+    "graspPatterns": "Grasp patterns and relationships faster",
+    "shareInsights": "Share insights with teams easier"
+  },
+  "goToEditor": "Go to Editor"
+}

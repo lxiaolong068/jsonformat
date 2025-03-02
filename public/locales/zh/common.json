@@ -1,0 +1,25 @@
+{
+  "title": "JSON Crack",
+  "subtitle": "不要浪费时间在 JSON 格式化工具上",
+  "description": "迷失在代码行中的日子已经结束。JsonFormat 为您提供最佳的数据视图，让您比以往更快地获得洞察力。",
+  "useForFree": "免费使用",
+  "features": {
+    "clearPresentation": "清晰、简洁的数据展示",
+    "fastDecision": "快速决策",
+    "graspPatterns": "更快地掌握模式和关系",
+    "shareInsights": "更轻松地与团队分享见解"
+  },
+  "goToEditor": "前往编辑器",
+  "vsCode": "VS Code",
+  "openSource": "开源项目",
+  "tools": "工具",
+  "converter": "转换器",
+  "converterDesc": "将JSON转换为YAML，CSV转换为JSON，YAML转换为XML等。",
+  "generateTypes": "生成类型",
+  "generateTypesDesc": "生成TypeScript类型、Golang结构体、Rust等。",
+  "jsonSchema": "JSON Schema",
+  "jsonSchemaDesc1": "从JSON数据生成JSON schema。",
+  "jsonSchemaDesc2": "从JSON schema生成JSON数据。",
+  "upgrade": "升级",
+  "editor": "编辑器"
+}

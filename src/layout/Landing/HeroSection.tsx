@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Stack, Flex, Button, Image } from "@mantine/core";
 import styled from "styled-components";
 import { FaChevronRight } from "react-icons/fa6";
+import { useLanguage } from "src/contexts/LanguageContext";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin-ext"],
@@ -102,13 +103,15 @@ const StyledHeroText = styled.h2`
 `;
 
 export const HeroSection = () => {
+  const { language } = useLanguage();
+  
   return (
     <StyledHeroSection>
       <StyledHeroSectionBody>
         <Stack flex="1" miw={250} mx="auto" align="center">
           <Link href="https://todiagram.com?ref=jsoncrack.com" rel="noopener">
             <Flex justify="center" fz="sm" c="gray.8" gap="8" align="center">
-              built by
+              {language === 'zh' ? '由' : 'built by'}
               <Image
                 src="/assets/todiagram_logo.png"
                 alt="Todiagram Logo"
@@ -116,38 +119,43 @@ export const HeroSection = () => {
                 w="fit-content"
                 loading="eager"
               />
+              {language === 'zh' ? '构建' : ''}
             </Flex>
           </Link>
-          <StyledHeroTitle>Visualize JSON into interactive graphs</StyledHeroTitle>
+          <StyledHeroTitle>{language === 'zh' ? '将JSON可视化为交互式图表' : 'Visualize JSON into interactive graphs'}</StyledHeroTitle>
           <StyledHeroText>
-            The best online JSON viewer tool to <strong>visualize</strong>, <strong>format</strong>{" "}
-            and <strong>explore</strong>.
+            {language === 'zh' ? (
+              <>最佳在线JSON查看工具，用于<strong>可视化</strong>、<strong>格式化</strong>和<strong>探索</strong>。</>
+            ) : (
+              <>The best online JSON viewer tool to <strong>visualize</strong>, <strong>format</strong>{" "}
+              and <strong>explore</strong>.</>
+            )}
           </StyledHeroText>
 
           <Flex gap="xs" wrap="wrap" justify="center" hiddenFrom="xs">
             <Button
               component="a"
               color="#202842"
-              href="/editor"
+              href={`/${language !== 'en' ? language + '/' : ''}editor`}
               size="md"
               radius="md"
               rightSection={<FaChevronRight />}
               fw="500"
             >
-              Go to Editor
+              {language === 'zh' ? '前往编辑器' : 'Go to Editor'}
             </Button>
           </Flex>
           <Flex gap="lg" wrap="wrap" justify="center" visibleFrom="xs">
             <Button
               component="a"
               color="#202842"
-              href="/editor"
+              href={`/${language !== 'en' ? language + '/' : ''}editor`}
               size="lg"
               radius="md"
               rightSection={<FaChevronRight />}
               fw="500"
             >
-              Go to Editor
+              {language === 'zh' ? '前往编辑器' : 'Go to Editor'}
             </Button>
           </Flex>
         </Stack>

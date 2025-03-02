@@ -10,6 +10,8 @@ import { LuGlobe } from "react-icons/lu";
 import { MdCompare, MdFilterListAlt } from "react-icons/md";
 import { SiJsonwebtokens } from "react-icons/si";
 import { VscSearchFuzzy, VscJson, VscGroupByRefType, VscLock } from "react-icons/vsc";
+// 导入翻译hook
+import { useTranslation } from 'next-i18next';
 import { jsonToContent } from "src/lib/utils/jsonAdapter";
 import useFile from "src/store/useFile";
 import useJson from "src/store/useJson";
@@ -21,6 +23,8 @@ export const ToolsMenu = () => {
   const getJson = useJson(state => state.getJson);
   const setContents = useFile(state => state.setContents);
   const getFormat = useFile(state => state.getFormat);
+  // 使用翻译函数
+  const { t } = useTranslation('editor');
 
   const randomizeData = async () => {
     try {
@@ -51,7 +55,7 @@ export const ToolsMenu = () => {
       <Menu.Target>
         <StyledToolElement onClick={() => gaEvent("show_tools_menu")}>
           <Flex align="center" gap={3}>
-            Tools <CgChevronDown />
+            {t('editor.toolbar.tools')} <CgChevronDown />
           </Flex>
         </StyledToolElement>
       </Menu.Target>
@@ -64,7 +68,7 @@ export const ToolsMenu = () => {
             gaEvent("open_jq_modal");
           }}
         >
-          JSON Query (jq)
+          {t('editor.toolsMenu.jsonQuery')}
         </Menu.Item>
         <Menu.Item
           fz={12}
@@ -74,7 +78,7 @@ export const ToolsMenu = () => {
             gaEvent("open_schema_modal");
           }}
         >
-          JSON Schema
+          {t('editor.toolsMenu.jsonSchema')}
         </Menu.Item>
         <Menu.Item
           fz={12}
@@ -84,7 +88,7 @@ export const ToolsMenu = () => {
             gaEvent("open_json_path_modal");
           }}
         >
-          JSON Path
+          {t('editor.toolsMenu.jsonPath')}
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item
@@ -95,7 +99,24 @@ export const ToolsMenu = () => {
             gaEvent("open_jwt_modal");
           }}
         >
-          Decode JWT
+          {t('editor.toolsMenu.decodeJWT')}
+        </Menu.Item>
+        <Menu.Item
+          fz={12}
+          leftSection={<FaRandom />}
+          onClick={randomizeData}
+        >
+          {t('editor.toolsMenu.randomizeData')}
+        </Menu.Item>
+        <Menu.Item
+          fz={12}
+          leftSection={<FaWandMagicSparkles />}
+          onClick={() => {
+            setVisible("AIModal", true);
+            gaEvent("open_ai_modal");
+          }}
+        >
+          {t('editor.toolsMenu.aiAssistant')}
         </Menu.Item>
         <Menu.Item
           fz={12}
@@ -105,43 +126,7 @@ export const ToolsMenu = () => {
             gaEvent("open_type_modal");
           }}
         >
-          Generate Type
-        </Menu.Item>
-        <Menu.Item fz={12} leftSection={<FaRandom />} onClick={randomizeData}>
-          Randomize Data
-        </Menu.Item>
-        <Menu.Item
-          fz={12}
-          leftSection={<LuGlobe />}
-          rightSection={<VscLock />}
-          onClick={() => {
-            setVisible("UpgradeModal", true);
-            gaEvent("rest_client_modal");
-          }}
-        >
-          REST Client
-        </Menu.Item>
-        <Menu.Item
-          fz={12}
-          leftSection={<FaWandMagicSparkles />}
-          rightSection={<VscLock />}
-          onClick={() => {
-            setVisible("UpgradeModal", true);
-            gaEvent("open_ai_filter_modal");
-          }}
-        >
-          AI-Powered Filter
-        </Menu.Item>
-        <Menu.Item
-          fz={12}
-          leftSection={<MdCompare />}
-          rightSection={<VscLock />}
-          onClick={() => {
-            setVisible("UpgradeModal", true);
-            gaEvent("open_compare_data_modal");
-          }}
-        >
-          Compare Data
+          {t('editor.toolsMenu.generateTypes')}
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>

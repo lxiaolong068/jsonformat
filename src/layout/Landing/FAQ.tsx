@@ -1,8 +1,13 @@
 import React from "react";
 import { Container, Title, Accordion } from "@mantine/core";
-import Questions from "src/data/faq.json";
+import { useLanguage } from "src/contexts/LanguageContext";
+import EnQuestions from "src/data/faq.json";
+import ZhQuestions from "src/data/faq.zh.json";
 
 export const FAQ = () => {
+  const { language } = useLanguage();
+  const Questions = language === 'zh' ? ZhQuestions : EnQuestions;
+  
   return (
     <Container id="faq" component="section" size="sm" py={80}>
       <Title
@@ -17,7 +22,7 @@ export const FAQ = () => {
         mb={60}
         ta="center"
       >
-        Frequently Asked Questions
+        {language === 'zh' ? '常见问题' : 'Frequently Asked Questions'}
       </Title>
       <Accordion
         variant="separated"

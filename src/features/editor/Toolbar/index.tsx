@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { FiDownload } from "react-icons/fi";
 import { LuCrown } from "react-icons/lu";
+// 导入翻译hook
+import { useTranslation } from 'next-i18next';
 import { type FileFormat, formats } from "src/enums/file.enum";
 import { SearchInput } from "src/features/editor/Toolbar/SearchInput";
 import { JSONCrackLogo } from "src/layout/JsonCrackLogo";
@@ -55,6 +57,8 @@ export const Toolbar = ({ isWidget = false }: ToolbarProps) => {
   const setVisible = useModal(state => state.setVisible);
   const setFormat = useFile(state => state.setFormat);
   const format = useFile(state => state.format);
+  // 使用翻译函数
+  const { t } = useTranslation('editor');
 
   return (
     <StyledTools>
@@ -96,25 +100,18 @@ export const Toolbar = ({ isWidget = false }: ToolbarProps) => {
             leftSection={<LuCrown />}
             mr="6"
           >
-            Unlock Pro Features
+            {t('editor.toolbar.unlockPro')}
           </Button>
         )}
+        <StyledToolElement title={t('editor.toolbar.fullscreen')} onClick={fullscreenBrowser}>
+          <AiOutlineFullscreen size="18" />
+        </StyledToolElement>
+        <StyledToolElement title={t('editor.toolbar.download')} onClick={() => setVisible("DownloadModal", true)}>
+          <FiDownload size="18" />
+        </StyledToolElement>
+        <OptionsMenu />
         <SearchInput />
-        {!isWidget && (
-          <>
-            <StyledToolElement
-              title="Save as Image"
-              onClick={() => setVisible("DownloadModal", true)}
-            >
-              <FiDownload size="18" />
-            </StyledToolElement>
-            <ZoomMenu />
-            <OptionsMenu />
-            <StyledToolElement title="Fullscreen" $hide={isWidget} onClick={fullscreenBrowser}>
-              <AiOutlineFullscreen size="18" />
-            </StyledToolElement>
-          </>
-        )}
+        <ZoomMenu />
       </Group>
     </StyledTools>
   );
