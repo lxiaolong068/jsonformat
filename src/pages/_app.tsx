@@ -1,7 +1,7 @@
 import React from "react";
 import type { AppProps } from "next/app";
 // 恢复 next-i18next 导入
-import { appWithTranslation } from 'next-i18next';
+import { appWithTranslation } from "next-i18next";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/code-highlight/styles.css";
@@ -21,7 +21,7 @@ const theme = createTheme({
   respectReducedMotion: true,
   cursorType: "pointer",
   fontFamily:
-    'system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+    "system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,\"Noto Sans\",sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\",\"Noto Color Emoji\"",
   defaultGradient: {
     from: "#388cdb",
     to: "#0f037f",

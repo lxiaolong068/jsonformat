@@ -165,11 +165,11 @@ function jsonToGo(json, typename, flatten = true, example = false, allOmitempty 
         appender(typename + " ");
         parent = typename;
         parseScope(scope[keys[i]], depth);
-        appender(' `json:"' + keyname);
+        appender(" `json:\"" + keyname);
         if (allOmitempty || (omitempty && omitempty[keys[i]] === true)) {
           appender(",omitempty");
         }
-        appender('"`\n');
+        appender("\"`\n");
       }
       indenter(--innerTabs);
       appender("}");
@@ -185,14 +185,14 @@ function jsonToGo(json, typename, flatten = true, example = false, allOmitempty 
         append(typename + " ");
         parent = typename;
         parseScope(scope[keys[i]], depth);
-        append(' `json:"' + keyname);
+        append(" `json:\"" + keyname);
         if (allOmitempty || (omitempty && omitempty[keys[i]] === true)) {
           append(",omitempty");
         }
         if (example && scope[keys[i]] !== "" && typeof scope[keys[i]] !== "object") {
-          append('" example:"' + scope[keys[i]]);
+          append("\" example:\"" + scope[keys[i]]);
         }
-        append('"`\n');
+        append("\"`\n");
       }
       indent(--tabs);
       append("}");

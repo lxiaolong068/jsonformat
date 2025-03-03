@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import {
   Button,
   Container,
@@ -76,7 +76,7 @@ const StyledDottedContainer = styled.div`
 `;
 
 export const Section1 = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const router = useRouter();
   const { locale } = router;
   
@@ -95,10 +95,10 @@ export const Section1 = () => {
             order={2}
             c="gray.9"
           >
-            {t('subtitle')}
+            {t("subtitle")}
           </Title>
           <Text my="md" c="gray.6" fz={16} maw={510}>
-            {t('description')}
+            {t("description")}
           </Text>
           <List
             fz={{
@@ -111,16 +111,16 @@ export const Section1 = () => {
             icon={<LuBadgeCheck size="20" />}
           >
             <SimpleGrid w="fit-content" cols={2}>
-              <List.Item>{t('features.clearPresentation')}</List.Item>
-              <List.Item>{t('features.fastDecision')}</List.Item>
-              <List.Item>{t('features.graspPatterns')}</List.Item>
-              <List.Item>{t('features.shareInsights')}</List.Item>
+              <List.Item>{t("features.clearPresentation")}</List.Item>
+              <List.Item>{t("features.fastDecision")}</List.Item>
+              <List.Item>{t("features.graspPatterns")}</List.Item>
+              <List.Item>{t("features.shareInsights")}</List.Item>
             </SimpleGrid>
           </List>
           {/* 修改这里的链接，添加语言前缀 */}
-          <Link href={`/${locale !== 'en' ? locale + '/' : ''}editor`} prefetch={false}>
+          <Link href={`/${locale !== "en" ? locale + "/" : ""}editor`} prefetch={false}>
             <Button color="#202842" size="lg" radius="md" w="fit-content" mt="sm">
-              {t('useForFree')}
+              {t("useForFree")}
             </Button>
           </Link>
         </Stack>

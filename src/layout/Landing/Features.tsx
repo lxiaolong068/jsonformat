@@ -113,7 +113,7 @@ export const Features = () => {
             bg="blue.0"
             size="lg"
           >
-            {language === 'zh' ? '功能特性' : 'Features'}
+            {language === "zh" ? "功能特性" : "Features"}
           </Badge>
         </Center>
         <Title
@@ -129,7 +129,7 @@ export const Features = () => {
           mb={15}
           style={{ textAlign: "center" }}
         >
-          {language === 'zh' ? '直观地探索您的数据' : 'Explore Your Data Visually'}
+          {language === "zh" ? "直观地探索您的数据" : "Explore Your Data Visually"}
         </Title>
         <Title
           order={3}
@@ -142,9 +142,9 @@ export const Features = () => {
           fz={{ base: 16, sm: 18 }}
           w={{ base: "100%", xs: "80%", sm: "60%", md: "40%" }}
         >
-          {language === 'zh' ? 
-            'JSON、YAML、CSV、XML和TOML的一体化工具。格式化器、验证器、可视化工具和编辑器。' : 
-            'All in one tool for JSON, YAML, CSV, XML, and TOML. Formatter, validator, visualizer, and editor.'}
+          {language === "zh" ? 
+            "JSON、YAML、CSV、XML和TOML的一体化工具。格式化器、验证器、可视化工具和编辑器。" : 
+            "All in one tool for JSON, YAML, CSV, XML, and TOML. Formatter, validator, visualizer, and editor."}
         </Title>
 
         <SimpleGrid
@@ -162,10 +162,10 @@ export const Features = () => {
                   {feature.icon}
                 </ThemeIcon>
                 <Title fw={500} ta="center" c="gray.9" order={3}>
-                  {language === 'zh' && feature.titleZh ? feature.titleZh : feature.title}
+                  {language === "zh" && feature.titleZh ? feature.titleZh : feature.title}
                 </Title>
                 <Text fz="sm" c="gray.8">
-                  {language === 'zh' && feature.descriptionZh ? feature.descriptionZh : feature.description}
+                  {language === "zh" && feature.descriptionZh ? feature.descriptionZh : feature.description}
                 </Text>
               </Flex>
             </Paper>

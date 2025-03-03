@@ -4,12 +4,12 @@ import { Button, Stack, Text, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
 import { SEO } from "src/constants/seo";
 import Layout from "src/layout/PageLayout";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetStaticProps } from 'next';
-import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetStaticProps } from "next";
+import { useTranslation } from "next-i18next";
 
 const NotFound = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   
   return (
     <Layout>
@@ -18,13 +18,13 @@ const NotFound = () => {
         <Title fz={150} style={{ fontFamily: "monospace" }}>
           404
         </Title>
-        <Title order={2}>{t('notFound.title', 'Nothing to see here')}</Title>
+        <Title order={2}>{t("notFound.title", "Nothing to see here")}</Title>
         <Text c="dimmed" maw={800} style={{ textAlign: "center" }}>
-          {t('notFound.description', 'Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.')}
+          {t("notFound.description", "Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.")}
         </Text>
         <Link href="/">
           <Button size="lg" color="gray" type="button">
-            {t('notFound.goHome', 'Go Home')}
+            {t("notFound.goHome", "Go Home")}
           </Button>
         </Link>
       </Stack>
@@ -37,7 +37,7 @@ export default NotFound;
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
+      ...(await serverSideTranslations(locale || "en", ["common"])),
     },
   };
 };

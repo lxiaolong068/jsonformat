@@ -6,7 +6,7 @@ import ZhQuestions from "src/data/faq.zh.json";
 
 export const FAQ = () => {
   const { language } = useLanguage();
-  const Questions = language === 'zh' ? ZhQuestions : EnQuestions;
+  const Questions = language === "zh" ? ZhQuestions : EnQuestions;
   
   return (
     <Container id="faq" component="section" size="sm" py={80}>
@@ -22,7 +22,7 @@ export const FAQ = () => {
         mb={60}
         ta="center"
       >
-        {language === 'zh' ? '常见问题' : 'Frequently Asked Questions'}
+        {language === "zh" ? "常见问题" : "Frequently Asked Questions"}
       </Title>
       <Accordion
         variant="separated"

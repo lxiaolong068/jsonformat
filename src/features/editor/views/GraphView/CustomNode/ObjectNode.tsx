@@ -14,7 +14,7 @@ type RowProps = {
 
 const Row = ({ val, x, y, index }: RowProps) => {
   const key = JSON.stringify(val);
-  const rowKey = JSON.stringify(val[0]).replaceAll('"', "");
+  const rowKey = JSON.stringify(val[0]).replaceAll("\"", "");
   const rowValue = JSON.stringify(val[1]);
 
   return (

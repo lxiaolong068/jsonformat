@@ -35,7 +35,7 @@ interface TextRendererProps {
 }
 
 export const TextRenderer = ({ children }: TextRendererProps) => {
-  const text = children?.replaceAll('"', "");
+  const text = children?.replaceAll("\"", "");
 
   if (isURL(text)) return Linkify(text);
 

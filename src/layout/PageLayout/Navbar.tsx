@@ -5,7 +5,7 @@ import LanguageSwitcher from "../../components/LanguageSwitcher";
 import styled from "styled-components";
 import { LuChevronDown } from "react-icons/lu";
 import { JSONCrackLogo } from "../JsonCrackLogo";
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from "next-i18next";
 
 const StyledNavbarWrapper = styled.div`
   z-index: 3;
@@ -62,7 +62,7 @@ const Center = styled.div`
 `;
 
 export const Navbar = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   return (
     <StyledNavbarWrapper className="navbar">
       <StyledNavbar>
@@ -80,7 +80,7 @@ export const Navbar = () => {
             radius="md"
             rel="noopener"
           >
-            {t('vsCode')}
+            {t("vsCode")}
           </Button>
           <Button
             component="a"
@@ -92,7 +92,7 @@ export const Navbar = () => {
             radius="md"
             rel="noopener"
           >
-            {t('openSource')}
+            {t("openSource")}
           </Button>
           <Menu withArrow shadow="sm">
             <Menu.Target>
@@ -104,40 +104,40 @@ export const Navbar = () => {
                 radius="md"
                 rightSection={<LuChevronDown />}
               >
-                {t('tools')}
+                {t("tools")}
               </Button>
             </Menu.Target>
             <Menu.Dropdown maw={300} bg="white">
               <StyledMenuItem component={Link} prefetch={false} href="/converter/json-to-yaml">
                 <Stack gap="2">
                   <Text c="black" size="sm" fw={600}>
-                    {t('converter')}
+                    {t("converter")}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    {t('converterDesc')}
+                    {t("converterDesc")}
                   </Text>
                 </Stack>
               </StyledMenuItem>
               <StyledMenuItem component={Link} prefetch={false} href="/type/json-to-rust">
                 <Stack gap="2">
                   <Text c="black" size="sm" fw={600}>
-                    {t('generateTypes')}
+                    {t("generateTypes")}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    {t('generateTypesDesc')}
+                    {t("generateTypesDesc")}
                   </Text>
                 </Stack>
               </StyledMenuItem>
               <StyledMenuItem component={Link} prefetch={false} href="/tools/json-schema">
                 <Stack gap="2">
                   <Text c="black" size="sm" fw={600}>
-                    {t('jsonSchema')}
+                    {t("jsonSchema")}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    {t('jsonSchemaDesc1')}
+                    {t("jsonSchemaDesc1")}
                   </Text>
                   <Text size="xs" c="gray.6" lineClamp={2}>
-                    {t('jsonSchemaDesc2')}
+                    {t("jsonSchemaDesc2")}
                   </Text>
                 </Stack>
               </StyledMenuItem>
@@ -155,7 +155,7 @@ export const Navbar = () => {
             radius="md"
             rel="noopener"
           >
-            {t('upgrade')}
+            {t("upgrade")}
           </Button>
           <Button
             radius="md"
@@ -165,7 +165,7 @@ export const Navbar = () => {
             visibleFrom="sm"
             size="md"
           >
-            {t('editor')}
+            {t("editor")}
           </Button>
         </Right>
       </StyledNavbar>

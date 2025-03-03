@@ -5,7 +5,7 @@ import { BsCheck2 } from "react-icons/bs";
 import { MdSettings } from "react-icons/md";
 import { VscLock } from "react-icons/vsc";
 // 导入翻译hook
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from "next-i18next";
 import useConfig from "src/store/useConfig";
 import useModal from "src/store/useModal";
 import { StyledToolElement } from "./styles";
@@ -19,7 +19,7 @@ export const OptionsMenu = () => {
   const toggleCollapseButton = useConfig(state => state.toggleCollapseButton);
   const toggleImagePreview = useConfig(state => state.toggleImagePreview);
   // 使用翻译函数
-  const { t } = useTranslation('editor');
+  const { t } = useTranslation("editor");
 
   const gesturesEnabled = useConfig(state => state.gesturesEnabled);
   const childrenCountVisible = useConfig(state => state.childrenCountVisible);
@@ -45,7 +45,7 @@ export const OptionsMenu = () => {
             gaEvent("toggle_rulers", { label: rulersEnabled ? "on" : "off" });
           }}
         >
-          <Text size="xs">{t('editor.options.rulers')}</Text>
+          <Text size="xs">{t("editor.options.rulers")}</Text>
         </Menu.Item>
         <Menu.Item
           leftSection={<BsCheck2 opacity={gesturesEnabled ? 100 : 0} />}
@@ -54,7 +54,7 @@ export const OptionsMenu = () => {
             gaEvent("toggle_gestures", { label: gesturesEnabled ? "on" : "off" });
           }}
         >
-          <Text size="xs">{t('editor.options.trackpadGestures')}</Text>
+          <Text size="xs">{t("editor.options.trackpadGestures")}</Text>
         </Menu.Item>
         <Menu.Item
           leftSection={<BsCheck2 opacity={childrenCountVisible ? 100 : 0} />}
@@ -63,7 +63,7 @@ export const OptionsMenu = () => {
             gaEvent("toggle_children_count", { label: childrenCountVisible ? "on" : "off" });
           }}
         >
-          <Text size="xs">{t('editor.options.itemCount')}</Text>
+          <Text size="xs">{t("editor.options.itemCount")}</Text>
         </Menu.Item>
         <Menu.Item
           leftSection={<BsCheck2 opacity={imagePreviewEnabled ? 100 : 0} />}
@@ -72,7 +72,7 @@ export const OptionsMenu = () => {
             gaEvent("toggle_image_preview", { label: imagePreviewEnabled ? "on" : "off" });
           }}
         >
-          <Text size="xs">{t('editor.options.imageLinkPreview')}</Text>
+          <Text size="xs">{t("editor.options.imageLinkPreview")}</Text>
         </Menu.Item>
         <Menu.Item
           leftSection={<BsCheck2 opacity={collapseButtonVisible ? 100 : 0} />}
@@ -81,7 +81,7 @@ export const OptionsMenu = () => {
             gaEvent("toggle_expand_collapse", { label: collapseButtonVisible ? "on" : "off" });
           }}
         >
-          <Text size="xs">{t('editor.options.showExpandCollapse')}</Text>
+          <Text size="xs">{t("editor.options.showExpandCollapse")}</Text>
         </Menu.Item>
         <Menu.Item
           leftSection={<BsCheck2 opacity={darkmodeEnabled ? 100 : 0} />}
@@ -90,14 +90,14 @@ export const OptionsMenu = () => {
             gaEvent("toggle_dark_mode", { label: darkmodeEnabled ? "on" : "off" });
           }}
         >
-          <Text size="xs">{t('editor.options.darkMode')}</Text>
+          <Text size="xs">{t("editor.options.darkMode")}</Text>
         </Menu.Item>
         <Menu.Item
           closeMenuOnClick
           leftSection={<VscLock />}
           onClick={() => setVisible("UpgradeModal", true)}
         >
-          <Text size="xs">{t('editor.options.customizeColors')}</Text>
+          <Text size="xs">{t("editor.options.customizeColors")}</Text>
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>

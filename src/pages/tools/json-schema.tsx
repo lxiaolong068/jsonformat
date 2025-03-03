@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Box, Button, Container, Flex, Paper, Title, Text } from "@mantine/core";
 import { Editor, type OnMount } from "@monaco-editor/react";
 import { JSONSchemaFaker } from "json-schema-faker";
 import { NextSeo } from "next-seo";
-import { LuCheck, LuXCircle } from "react-icons/lu";
+import { LuCheck, LuX } from "react-icons/lu";
 import { SEO } from "src/constants/seo";
 import { FileFormat, TypeLanguage } from "src/enums/file.enum";
 import { editorOptions } from "src/layout/ConverterLayout/options";
@@ -79,7 +79,7 @@ const JSONSchemaTool = () => {
             <Box p="xs" bg="gray">
               <Flex justify="space-between" align="center">
                 <Text c="gray.3">JSON</Text>
-                {jsonError ? <LuXCircle color="red" /> : <LuCheck color="lightgreen" />}
+                {jsonError ? <LuX color="red" /> : <LuCheck color="lightgreen" />}
               </Flex>
             </Box>
             <Editor
@@ -96,7 +96,7 @@ const JSONSchemaTool = () => {
             <Box p="xs" bg="gray">
               <Flex justify="space-between" align="center">
                 <Text c="gray.3">JSON Schema</Text>
-                {jsonSchemaError ? <LuXCircle color="red" /> : <LuCheck color="lightgreen" />}
+                {jsonSchemaError ? <LuX color="red" /> : <LuCheck color="lightgreen" />}
               </Flex>
             </Box>
             <Editor

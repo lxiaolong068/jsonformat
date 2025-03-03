@@ -9,7 +9,7 @@ import useModal from "src/store/useModal";
 const dataToString = (data: any) => {
   const text = Array.isArray(data) ? Object.fromEntries(data) : data;
   const replacer = (_: string, v: string) => {
-    if (typeof v === "string") return v.replaceAll('"', "");
+    if (typeof v === "string") return v.replaceAll("\"", "");
     return v;
   };
 

@@ -101,7 +101,7 @@ const Docs = () => {
                 w={500}
                 language="json"
                 code={
-                  '{\n  theme: "light" | "dark",\n  direction: "TOP" | "RIGHT" | "DOWN" | "LEFT"\n}'
+                  "{\n  theme: \"light\" | \"dark\",\n  direction: \"TOP\" | \"RIGHT\" | \"DOWN\" | \"LEFT\"\n}"
                 }
                 withCopyButton={false}
               />

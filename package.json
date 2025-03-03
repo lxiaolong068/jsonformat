@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:no-lint": "NEXT_DISABLE_ESLINT=1 next build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "tsc --project tsconfig.json && eslint src && prettier --check src",

@@ -13,6 +13,7 @@ JSON Crack is a web-based tool designed to visualize, analyze, and manipulate JS
     *   **Tree View:** Explore JSON structures in a hierarchical tree format.
 *   **Format Conversion:** Convert between JSON, CSV, XML, and YAML formats.
 *   **Type Generation:** Generate code types for Go, Kotlin, Rust, and TypeScript from JSON, CSV, XML, and YAML.
+*   **Multilingual Support:** Interface available in multiple languages including English and Chinese.
 *   **JSON Editor:** (Future Enhancement) Edit JSON data directly within the application.
 *   **JSON Schema Tool:** Validate and generate JSON schemas.
 *   **Widget:** Embeddable widget for integrating JSON Crack functionality into other applications.
@@ -50,6 +51,12 @@ For developers who want to run it locally:
 ## Contributing
 
 Contributions are welcome! Please refer to the `CONTRIBUTING.md` file for guidelines.
+
+## Internationalization
+
+JSON Crack supports multiple languages. Currently, English and Chinese are fully supported, with more languages planned for the future.
+
+If you'd like to contribute translations or add support for a new language, please refer to our [Internationalization Guide](docs/i18n-guide.md) for detailed instructions.
 
 ## License
 

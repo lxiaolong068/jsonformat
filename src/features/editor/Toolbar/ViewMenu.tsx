@@ -10,11 +10,12 @@ import { VscExpandAll, VscCollapseAll, VscTarget } from "react-icons/vsc";
 import { MdCompare } from "react-icons/md";
 import { LuGlobe } from "react-icons/lu";
 // 导入翻译hook
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from "next-i18next";
 import { ViewMode } from "src/enums/viewMode.enum";
 import useGraph from "src/features/editor/views/GraphView/stores/useGraph";
 import useToggleHide from "src/hooks/useToggleHide";
 import useConfig from "src/store/useConfig";
+import useModal from "src/store/useModal";
 import type { LayoutDirection } from "src/types/graph";
 import { StyledToolElement } from "./styles";
 
@@ -47,8 +48,9 @@ export const ViewMenu = () => {
   const graphCollapsed = useGraph(state => state.graphCollapsed);
   const viewMode = useConfig(state => state.viewMode);
   const setViewMode = useConfig(state => state.setViewMode);
+  const setVisible = useModal(state => state.setVisible);
   // 使用翻译函数
-  const { t } = useTranslation('editor');
+  const { t } = useTranslation("editor");
 
   const toggleDirection = () => {
     const nextDirection = getNextDirection(direction || "RIGHT");
@@ -86,7 +88,7 @@ export const ViewMenu = () => {
       <Menu.Target>
         <StyledToolElement onClick={() => gaEvent("show_view_menu")}>
           <Flex align="center" gap={3}>
-            {t('editor.toolbar.view')} <CgChevronDown />
+            {t("editor.toolbar.view")} <CgChevronDown />
           </Flex>
         </StyledToolElement>
       </Menu.Target>
@@ -112,7 +114,7 @@ export const ViewMenu = () => {
           onClick={toggleDirection}
           rightSection={<Text size="xs" c="dimmed">{`${coreKey}+Shift+D`}</Text>}
         >
-          {t('editor.viewMenu.changeDirection')}
+          {t("editor.viewMenu.changeDirection")}
         </Menu.Item>
         <Menu.Item
           fz={12}
@@ -120,12 +122,13 @@ export const ViewMenu = () => {
           onClick={toggleExpandCollapseGraph}
           rightSection={<Text size="xs" c="dimmed">{`${coreKey}+Shift+C`}</Text>}
         >
-          {graphCollapsed ? t('editor.viewMenu.expandGraph') : t('editor.viewMenu.collapseGraph')}
+          {graphCollapsed ? t("editor.viewMenu.expandGraph") : t("editor.viewMenu.collapseGraph")}
         </Menu.Item>
         <Menu.Item fz={12} leftSection={<VscTarget />} onClick={focusFirstNode}>
-          {t('editor.viewMenu.focusRootNode')}
+          {t("editor.viewMenu.focusFirstNode")}
         </Menu.Item>
         <Menu.Divider />
+        {/* 暂时注释掉 CompareModal 功能，因为该模态框组件尚未实现
         <Menu.Item
           fz={12}
           leftSection={<MdCompare />}
@@ -134,8 +137,10 @@ export const ViewMenu = () => {
             gaEvent("open_compare_modal");
           }}
         >
-          {t('editor.viewMenu.compareJSON')}
+          {t("editor.viewMenu.compareJSON")}
         </Menu.Item>
+        */}
+        {/* 暂时注释掉 LiveCollabModal 功能，因为该模态框组件尚未实现
         <Menu.Item
           fz={12}
           leftSection={<LuGlobe />}
@@ -144,8 +149,9 @@ export const ViewMenu = () => {
             gaEvent("open_live_collab_modal");
           }}
         >
-          {t('editor.viewMenu.liveCollaboration')}
+          {t("editor.viewMenu.liveCollab")}
         </Menu.Item>
+        */}
       </Menu.Dropdown>
     </Menu>
   );

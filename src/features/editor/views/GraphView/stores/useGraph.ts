@@ -159,7 +159,7 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
       .map(node => node.id);
 
     const closestParentToRoot = Math.min(...collapsedParents.map(n => +n));
-    const focusNodeId = `g[id*='node-${closestParentToRoot}']`;
+    const focusNodeId = `g[id*='node-${closestParentToRoot}"]`;
     const rootNode = document.querySelector(focusNodeId);
 
     set({
@@ -186,7 +186,7 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
     });
   },
   focusFirstNode: () => {
-    const rootNode = document.querySelector("g[id*='node-1']");
+    const rootNode = document.querySelector('g[id*="node-1"]');
     get().viewPort?.camera?.centerFitElementIntoView(rootNode as HTMLElement, {
       elementExtraMarginForZoom: 100,
     });

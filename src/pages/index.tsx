@@ -1,6 +1,6 @@
 import React from "react";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextSeo } from "next-seo";
 import { SEO } from "src/constants/seo";
 import { FAQ } from "src/layout/Landing/FAQ";
@@ -35,14 +35,14 @@ export const getStaticProps = (async ({ locale }) => {
     return {
       props: {
         stars: data?.stargazers_count || 0,
-        ...(await serverSideTranslations(locale || 'en', ['common'])),
+        ...(await serverSideTranslations(locale || "en", ["common"])),
       },
     };
   } catch (error) {
     return {
       props: {
         stars: 0,
-        ...(await serverSideTranslations(locale || 'en', ['common'])),
+        ...(await serverSideTranslations(locale || "en", ["common"])),
       },
     };
   }
