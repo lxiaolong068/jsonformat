@@ -48,6 +48,14 @@ For developers who want to run it locally:
     pnpm run dev
     ```
 
+## Recent Updates
+
+### Bug Fixes
+- Fixed quotation mark issues in various files that were causing syntax errors
+- Corrected icon imports (replaced `LuXCircle` with `LuX`)
+- Updated Next.js link usage to follow best practices
+- Enhanced i18next configuration for better internationalization support
+
 ## Contributing
 
 Contributions are welcome! Please refer to the `CONTRIBUTING.md` file for guidelines.

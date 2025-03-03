@@ -14,6 +14,18 @@ import { SEO } from "src/constants/seo";
 import { lightTheme } from "src/constants/theme";
 // 导入 LanguageProvider
 import { LanguageProvider } from "src/contexts/LanguageContext";
+// 导入 i18next 初始化
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+
+// 初始化 i18next
+i18next.use(initReactI18next).init({
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 const theme = createTheme({
   autoContrast: true,
