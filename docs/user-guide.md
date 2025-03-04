@@ -240,4 +240,4 @@ JSON Format 可以处理大多数常见大小的 JSON 文件。对于非常大�
 ### 6. 如何报告问题或请求新功能？
 
 如果您遇到问题或有新功能建议，请在 GitHub 仓库中创建一个 issue，详细描述您的问题或建议：
-[https://github.com/AykutSarac/jsoncrack.com/issues](https://github.com/AykutSarac/jsoncrack.com/issues) 
+[https://github.com/lxiaolong068/jsonformat/issues](https://github.com/lxiaolong068/jsonformat/issues) 

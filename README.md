@@ -1,6 +1,6 @@
 # JSON Format
 
-[![GitHub Stars](https://img.shields.io/github/stars/AykutSarac/jsoncrack.com.svg)](https://github.com/AykutSarac/jsoncrack.com)
+[![GitHub Stars](https://img.shields.io/github/stars/AykutSarac/jsoncrack.com.svg)](https://github.com/lxiaolong068/jsonformat)
 
 ## 概述
 
@@ -74,7 +74,7 @@ JSON Format 是一个功能强大的 Web 工具，专为可视化、分析和处
 
 1. 克隆仓库：
    ```bash
-   git clone https://github.com/AykutSarac/jsoncrack.com.git
+   git clone https://github.com/lxiaolong068/jsonformat.git
    ```
 2. 安装依赖：
    ```bash

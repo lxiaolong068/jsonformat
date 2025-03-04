@@ -22,10 +22,12 @@ import enCommon from "../../public/locales/en/common.json";
 import zhCommon from "../../public/locales/zh/common.json";
 import jaCommon from "../../public/locales/ja/common.json";
 import koCommon from "../../public/locales/ko/common.json";
+import deCommon from "../../public/locales/de/common.json";
 import enEditor from "../../public/locales/en/editor.json";
 import zhEditor from "../../public/locales/zh/editor.json";
 import jaEditor from "../../public/locales/ja/editor.json";
 import koEditor from "../../public/locales/ko/editor.json";
+import deEditor from "../../public/locales/de/editor.json";
 
 // 初始化 i18next
 i18next.use(initReactI18next).init({
@@ -50,6 +52,10 @@ i18next.use(initReactI18next).init({
     ko: {
       common: koCommon,
       editor: koEditor
+    },
+    de: {
+      common: deCommon,
+      editor: deEditor
     }
   }
 });

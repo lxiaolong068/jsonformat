@@ -1,0 +1,25 @@
+{
+  "title": "JSON Crack",
+  "subtitle": "Verschwenden Sie keine Zeit mit JSON-Formatierern",
+  "description": "Die Zeiten, in denen man sich in Codezeilen verliert, sind vorbei. JsonFormat bietet Ihnen die optimale Ansicht Ihrer Daten, damit Sie schneller als je zuvor Erkenntnisse gewinnen können.",
+  "useForFree": "Kostenlos nutzen",
+  "features": {
+    "clearPresentation": "Klare, präzise Datenpräsentation",
+    "fastDecision": "Schnelle Entscheidungsfindung",
+    "graspPatterns": "Muster und Beziehungen schneller erfassen",
+    "shareInsights": "Erkenntnisse einfacher mit Teams teilen"
+  },
+  "goToEditor": "Zum Editor",
+  "vsCode": "VS Code",
+  "openSource": "Open Source",
+  "tools": "Werkzeuge",
+  "converter": "Konverter",
+  "converterDesc": "Konvertieren Sie JSON zu YAML, CSV zu JSON, YAML zu XML und mehr.",
+  "generateTypes": "Typen generieren",
+  "generateTypesDesc": "Generieren Sie TypeScript-Typen, Golang-Strukturen, Rust und mehr.",
+  "jsonSchema": "JSON Schema",
+  "jsonSchemaDesc1": "Generieren Sie JSON-Schema aus JSON-Daten.",
+  "jsonSchemaDesc2": "Generieren Sie JSON-Daten aus JSON-Schema.",
+  "upgrade": "Upgrade",
+  "editor": "Editor"
+} 

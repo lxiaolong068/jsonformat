@@ -5,8 +5,60 @@ import dayjs from "dayjs";
 import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { JSONCrackLogo } from "../JsonCrackLogo";
+import { useLanguage } from "src/contexts/LanguageContext";
 
 export const Footer = () => {
+  const { language } = useLanguage();
+  
+  const getTranslation = (key: string) => {
+    const translations: Record<string, Record<string, string>> = {
+      resources: {
+        en: "Resources",
+        zh: "资源",
+        ja: "リソース",
+        ko: "리소스",
+        de: "Ressourcen"
+      },
+      friends: {
+        en: "Friends",
+        zh: "友情链接",
+        ja: "友達",
+        ko: "친구들",
+        de: "Partner"
+      },
+      social: {
+        en: "Social",
+        zh: "社交媒体",
+        ja: "ソーシャル",
+        ko: "소셜",
+        de: "Soziale Medien"
+      },
+      terms: {
+        en: "Terms",
+        zh: "条款",
+        ja: "利用規約",
+        ko: "이용약관",
+        de: "Nutzungsbedingungen"
+      },
+      privacy: {
+        en: "Privacy",
+        zh: "隐私",
+        ja: "プライバシー",
+        ko: "개인정보",
+        de: "Datenschutz"
+      },
+      vsCodeExtension: {
+        en: "VS Code Extension",
+        zh: "VS Code 扩展",
+        ja: "VS Code 拡張機能",
+        ko: "VS Code 확장",
+        de: "VS Code Erweiterung"
+      }
+    };
+    
+    return translations[key][language] || translations[key].en;
+  };
+  
   return (
     <Container mt={60} px={60} pb="xl" bg="black" fluid>
       <Divider color="gray.3" mb="xl" mx={-60} />
@@ -20,7 +72,7 @@ export const Footer = () => {
         <Flex gap={60} visibleFrom="sm">
           <Stack gap="xs">
             <Text fz="sm" c="white">
-              Resources
+              {getTranslation("resources")}
             </Text>
             <Anchor component={Link} prefetch={false} fz="sm" c="gray.5" href="/#faq">
               FAQ
@@ -34,12 +86,12 @@ export const Footer = () => {
               c="gray.5"
               rel="noopener"
             >
-              VS Code Extension
+              {getTranslation("vsCodeExtension")}
             </Anchor>
           </Stack>
           <Stack gap="xs">
             <Text fz="sm" c="white">
-              Friends
+              {getTranslation("friends")}
             </Text>
             <Anchor href="https://www.snowdaycal.cc/" fz="sm" c="gray.5" rel="noopener">
               Snow Day Calculator
@@ -53,7 +105,7 @@ export const Footer = () => {
           </Stack>
           <Stack gap="xs">
             <Text fz="sm" c="white">
-              Social
+              {getTranslation("social")}
             </Text>
             <Flex gap="xs">
               <Anchor
@@ -73,7 +125,7 @@ export const Footer = () => {
               </Anchor>
               <Anchor
                 aria-label="GitHub"
-                href="https://github.com/AykutSarac/jsoncrack.com"
+                href="https://github.com/lxiaolong068/jsonformat"
                 fz="sm"
                 rel="noopener"
               >
@@ -101,12 +153,12 @@ export const Footer = () => {
         </Text>
         <Anchor component={Link} prefetch={false} fz="sm" c="dimmed" href="/legal/terms">
           <Text fz="sm" c="dimmed">
-            Terms
+            {getTranslation("terms")}
           </Text>
         </Anchor>
         <Anchor component={Link} prefetch={false} fz="sm" c="dimmed" href="/legal/privacy">
           <Text fz="sm" c="dimmed">
-            Privacy
+            {getTranslation("privacy")}
           </Text>
         </Anchor>
       </Flex>

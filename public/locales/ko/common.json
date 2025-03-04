@@ -9,5 +9,17 @@
     "graspPatterns": "패턴과 관계를 더 빠르게 파악",
     "shareInsights": "팀과 더 쉽게 통찰력 공유"
   },
-  "goToEditor": "에디터로 이동"
+  "goToEditor": "에디터로 이동",
+  "vsCode": "VS Code",
+  "openSource": "오픈소스",
+  "tools": "도구",
+  "converter": "변환기",
+  "converterDesc": "JSON을 YAML로, CSV를 JSON으로, YAML을 XML로 등 변환합니다.",
+  "generateTypes": "타입 생성",
+  "generateTypesDesc": "TypeScript 타입, Golang 구조체, Rust 등을 생성합니다.",
+  "jsonSchema": "JSON 스키마",
+  "jsonSchemaDesc1": "JSON 데이터에서 JSON 스키마를 생성합니다.",
+  "jsonSchemaDesc2": "JSON 스키마에서 JSON 데이터를 생성합니다.",
+  "upgrade": "업그레이드",
+  "editor": "에디터"
 } 

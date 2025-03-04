@@ -84,7 +84,7 @@ export const Navbar = () => {
           </Button>
           <Button
             component="a"
-            href="https://github.com/AykutSarac/jsoncrack.com"
+            href="https://github.com/lxiaolong068/jsonformat"
             target="_blank"
             variant="subtle"
             color="black"

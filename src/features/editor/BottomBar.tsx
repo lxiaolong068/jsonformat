@@ -146,7 +146,7 @@ export const BottomBar = () => {
       <StyledRight>
         <StyledBottomBarItem>Nodes: {nodeCount}</StyledBottomBarItem>
         <Link
-          href="https://github.com/AykutSarac/jsoncrack.com/discussions"
+          href="https://github.com/lxiaolong068/jsonformat/discussions"
           target="_blank"
           rel="noopener"
         >

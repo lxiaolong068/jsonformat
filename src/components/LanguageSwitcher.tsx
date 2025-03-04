@@ -10,7 +10,7 @@ const LanguageSwitcher = () => {
   
   const changeLanguage = (locale: string) => {
     // 更新LanguageContext中的语言状态
-    setLanguage(locale as "en" | "zh" | "ja" | "ko");
+    setLanguage(locale as "en" | "zh" | "ja" | "ko" | "de");
     
     // 同时更新next-i18next的语言设置，通过路由切换
     router.push({ pathname, query }, asPath, { locale });
@@ -23,7 +23,8 @@ const LanguageSwitcher = () => {
           {language === "en" ? "English" : 
            language === "zh" ? "中文" : 
            language === "ja" ? "日本語" : 
-           language === "ko" ? "한국어" : "English"}
+           language === "ko" ? "한국어" : 
+           language === "de" ? "Deutsch" : "English"}
         </Button>
       </Menu.Target>
       
@@ -39,6 +40,9 @@ const LanguageSwitcher = () => {
         </Menu.Item>
         <Menu.Item onClick={() => changeLanguage("ko")}>
           한국어
+        </Menu.Item>
+        <Menu.Item onClick={() => changeLanguage("de")}>
+          Deutsch
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>

@@ -25,7 +25,7 @@ const Featured = ({ stars }: LovedByProps) => {
   return (
     <Flex align="center" justify="center" gap="lg" wrap="wrap">
       <StyledFeaturedItem
-        href="https://github.com/AykutSarac/jsoncrack.com"
+        href="https://github.com/lxiaolong068/jsonformat"
         target="_blank"
         rel="noopener"
       >

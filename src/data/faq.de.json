@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Was ist JsonFormat und was macht es?",
+    "content": "JsonFormat ist ein vielseitiges Online-Tool zur Visualisierung und Analyse verschiedener Datenformate, darunter JSON, YAML, CSV, XML und mehr. Es transformiert komplexe Daten in intuitive Graphen und Baumansichten, ideal für Entwickler, Datenanalysten und alle, die mit strukturierten Daten arbeiten."
+  },
+  {
+    "title": "Ist JsonFormat kostenlos?",
+    "content": "Ja, JsonFormat ist ein kostenloses Open-Source-Online-Tool. Für erweiterte Funktionen können Sie ToDiagram.com nutzen."
+  },
+  {
+    "title": "Sind meine Daten sicher?",
+    "content": "Absolut! JsonFormat priorisiert Ihre Datenprivatsphäre. Wenn Sie Ihre Daten in den Editor einfügen oder importieren, werden diese nur in Ihrem Browser verarbeitet, um die Visualisierung zu erstellen, ohne auf unsere Server zu gelangen. Ihre Daten bleiben vollständig privat und werden nirgendwo gespeichert, es sei denn, Sie entscheiden sich für einen manuellen Upload."
+  },
+  {
+    "title": "Kann ich mit JsonFormat JSON in andere Formate konvertieren?",
+    "content": "Ja, JsonFormat bietet robuste Datenkonvertierungsfunktionen. Sie können JSON einfach in YAML, XML in JSON, CSV in JSON und andere gängige Formate konvertieren."
+  },
+  {
+    "title": "Welche Datenformate werden unterstützt?",
+    "content": "Eine breite Palette von Datenformaten wird unterstützt, darunter JSON, YAML, XML, CSV und TOML."
+  },
+  {
+    "title": "Welche Datengröße kann ich visualisieren?",
+    "content": "Es unterstützt etwa 300 KB. Dies kann je nach Komplexität der Daten und Ihrer Hardware variieren."
+  },
+  {
+    "title": "Kann ich die generierten Graphen exportieren?",
+    "content": "Ja, Sie können die generierten Graphen als PNG-, JPEG- oder SVG-Dateien exportieren."
+  },
+  {
+    "title": "Wie verwende ich die VS Code-Erweiterung?",
+    "content": "Sie können die VS Code-Erweiterung verwenden, um JSON-Daten direkt in Ihrem Editor zu visualisieren. Installieren Sie die Erweiterung aus dem VS Code-Marktplatz und folgen Sie den Anweisungen auf der Seite der Erweiterung."
+  },
+  {
+    "title": "Ich habe früher den Premium-Plan abonniert, wo ist er geblieben?",
+    "content": "Wir haben die Premium-Funktionen zu ToDiagram.com verschoben. Sie können dieselben Anmeldedaten verwenden, um auf die Premium-Funktionen zuzugreifen oder Ihr Abonnement zu verwalten."
+  }
+] 

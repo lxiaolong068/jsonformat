@@ -22,10 +22,12 @@ interface FeatureItem {
   titleZh?: string;
   titleJa?: string;
   titleKo?: string;
+  titleDe?: string;
   description: string;
   descriptionZh?: string;
   descriptionJa?: string;
   descriptionKo?: string;
+  descriptionDe?: string;
   icon: React.ReactNode;
   color: string;
 }
@@ -36,11 +38,13 @@ const features: FeatureItem[] = [
     titleZh: "可视化工具",
     titleJa: "ビジュアライザー",
     titleKo: "시각화 도구",
+    titleDe: "Visualisierer",
     description:
       "Transform your data into interactive graphs or trees as you type. Supports JSON, YAML, CSV, XML, and TOML.",
     descriptionZh: "在您输入时将数据转换为交互式图表或树形结构。支持JSON、YAML、CSV、XML和TOML。",
     descriptionJa: "入力しながらデータをインタラクティブなグラフやツリーに変換します。JSON、YAML、CSV、XML、TOMLをサポートしています。",
     descriptionKo: "입력하는 동안 데이터를 대화형 그래프나 트리로 변환합니다. JSON, YAML, CSV, XML 및 TOML을 지원합니다.",
+    descriptionDe: "Transformieren Sie Ihre Daten beim Tippen in interaktive Graphen oder Bäume. Unterstützt JSON, YAML, CSV, XML und TOML.",
     icon: <FaBolt size={20} />,
     color: "yellow",
   },
@@ -49,11 +53,13 @@ const features: FeatureItem[] = [
     titleZh: "转换",
     titleJa: "変換",
     titleKo: "변환",
+    titleDe: "Konvertieren",
     description:
       "Convert JSON to CSV, YAML to JSON, XML to JSON, and more. Our JSON converter supports multiple formats for easy data exchange.",
     descriptionZh: "将JSON转换为CSV，YAML转换为JSON，XML转换为JSON等。我们的JSON转换器支持多种格式，便于数据交换。",
     descriptionJa: "JSONからCSV、YAMLからJSON、XMLからJSONなどへの変換が可能です。当社のJSON変換ツールは、簡単なデータ交換のために複数のフォーマットをサポートしています。",
     descriptionKo: "JSON을 CSV로, YAML을 JSON으로, XML을 JSON으로 등 다양한 변환이 가능합니다. 우리의 JSON 변환기는 쉬운 데이터 교환을 위해 여러 형식을 지원합니다.",
+    descriptionDe: "Konvertieren Sie JSON zu CSV, YAML zu JSON, XML zu JSON und mehr. Unser JSON-Konverter unterstützt mehrere Formate für einfachen Datenaustausch.",
     icon: <TbTransformFilled size={20} />,
     color: "orange",
   },
@@ -62,11 +68,13 @@ const features: FeatureItem[] = [
     titleZh: "格式化与验证",
     titleJa: "フォーマットと検証",
     titleKo: "포맷 및 검증",
+    titleDe: "Formatieren & Validieren",
     description:
       "Format and beautify your JSON data to make it more readable. Validate JSON, YAML, and CSV.",
     descriptionZh: "格式化和美化您的JSON数据，使其更易读。验证JSON、YAML和CSV。",
     descriptionJa: "JSONデータをフォーマットして読みやすくします。JSON、YAML、CSVを検証します。",
     descriptionKo: "JSON 데이터를 포맷하고 아름답게 만들어 더 읽기 쉽게 합니다. JSON, YAML 및 CSV를 검증합니다.",
+    descriptionDe: "Formatieren und verschönern Sie Ihre JSON-Daten, um sie lesbarer zu machen. Validieren Sie JSON, YAML und CSV.",
     icon: <MdOutlineFormatIndentIncrease size={20} />,
     color: "green",
   },
@@ -75,10 +83,12 @@ const features: FeatureItem[] = [
     titleZh: "生成代码",
     titleJa: "コード生成",
     titleKo: "코드 생성",
+    titleDe: "Code generieren",
     description: "Generate TypeScript interface, Golang structs, JSON Schema and more.",
     descriptionZh: "生成TypeScript接口、Golang结构体、JSON Schema等。",
     descriptionJa: "TypeScriptインターフェース、Golang構造体、JSONスキーマなどを生成します。",
     descriptionKo: "TypeScript 인터페이스, Golang 구조체, JSON 스키마 등을 생성합니다.",
+    descriptionDe: "Generieren Sie TypeScript-Interfaces, Golang-Strukturen, JSON-Schema und mehr.",
     icon: <MdOutlineGeneratingTokens size={20} />,
     color: "grape",
   },
@@ -87,11 +97,13 @@ const features: FeatureItem[] = [
     titleZh: "JSON Schema",
     titleJa: "JSONスキーマ",
     titleKo: "JSON 스키마",
+    titleDe: "JSON Schema",
     description:
       "Generate JSON Schema, create mock data, and validate JSON Schema from various data formats like JSON, YAML, XML, and CSV.",
     descriptionZh: "从JSON、YAML、XML和CSV等各种数据格式生成JSON Schema，创建模拟数据，并验证JSON Schema。",
     descriptionJa: "JSON、YAML、XML、CSVなどの様々なデータ形式からJSONスキーマを生成し、モックデータを作成し、JSONスキーマを検証します。",
     descriptionKo: "JSON, YAML, XML, CSV와 같은 다양한 데이터 형식에서 JSON 스키마를 생성하고, 모의 데이터를 만들고, JSON 스키마를 검증합니다.",
+    descriptionDe: "Generieren Sie JSON-Schema, erstellen Sie Mock-Daten und validieren Sie JSON-Schema aus verschiedenen Datenformaten wie JSON, YAML, XML und CSV.",
     icon: <VscJson size={20} />,
     color: "cyan",
   },
@@ -100,10 +112,12 @@ const features: FeatureItem[] = [
     titleZh: "高级JSON工具",
     titleJa: "高度なJSONツール",
     titleKo: "고급 JSON 도구",
+    titleDe: "Erweiterte JSON-Tools",
     description: "Decode JWT, randomize data, execute jq (JSON Query), json path commands.",
     descriptionZh: "解码JWT，随机化数据，执行jq（JSON查询），json路径命令。",
     descriptionJa: "JWTのデコード、データのランダム化、jq（JSONクエリ）、jsonパスコマンドの実行が可能です。",
     descriptionKo: "JWT 디코딩, 데이터 무작위화, jq(JSON 쿼리), json 경로 명령 실행이 가능합니다.",
+    descriptionDe: "Dekodieren Sie JWT, randomisieren Sie Daten, führen Sie jq (JSON-Abfrage) und JSON-Pfadbefehle aus.",
     icon: <FaToolbox size={20} />,
     color: "teal.5",
   },
@@ -112,11 +126,13 @@ const features: FeatureItem[] = [
     titleZh: "下载图片",
     titleJa: "画像のダウンロード",
     titleKo: "이미지 다운로드",
+    titleDe: "Bild herunterladen",
     description:
       "Export image of the graph as PNG, JPEG, or SVG. Share your data visualization with others.",
     descriptionZh: "将图表导出为PNG、JPEG或SVG图像。与他人分享您的数据可视化。",
     descriptionJa: "グラフの画像をPNG、JPEG、SVG形式でエクスポートできます。データの可視化を他の人と共有しましょう。",
     descriptionKo: "그래프 이미지를 PNG, JPEG 또는 SVG로 내보낼 수 있습니다. 데이터 시각화를 다른 사람들과 공유하세요.",
+    descriptionDe: "Exportieren Sie das Bild des Graphen als PNG, JPEG oder SVG. Teilen Sie Ihre Datenvisualisierung mit anderen.",
     icon: <IoImages size={20} />,
     color: "blue.4",
   },
@@ -125,10 +141,12 @@ const features: FeatureItem[] = [
     titleZh: "安全",
     titleJa: "安全性",
     titleKo: "보안",
+    titleDe: "Sicher",
     description: "Your data is never stored on our servers. Everything happens on your device.",
     descriptionZh: "您的数据永远不会存储在我们的服务器上。所有处理都在您的设备上进行。",
     descriptionJa: "あなたのデータは当社のサーバーに保存されることはありません。すべての処理はあなたのデバイス上で行われます。",
     descriptionKo: "귀하의 데이터는 절대 우리 서버에 저장되지 않습니다. 모든 처리는 귀하의 기기에서 이루어집니다.",
+    descriptionDe: "Ihre Daten werden niemals auf unseren Servern gespeichert. Alles geschieht auf Ihrem Gerät.",
     icon: <IoShieldCheckmark size={20} />,
     color: "gray",
   },
@@ -152,6 +170,7 @@ export const Features = () => {
             {language === "zh" ? "功能特性" : 
              language === "ja" ? "機能" : 
              language === "ko" ? "기능" : 
+             language === "de" ? "Funktionen" : 
              "Features"}
           </Badge>
         </Center>
@@ -171,6 +190,7 @@ export const Features = () => {
           {language === "zh" ? "直观地探索您的数据" : 
            language === "ja" ? "データを視覚的に探索" : 
            language === "ko" ? "데이터를 시각적으로 탐색" : 
+           language === "de" ? "Erkunden Sie Ihre Daten visuell" : 
            "Explore Your Data Visually"}
         </Title>
         <Title
@@ -190,6 +210,8 @@ export const Features = () => {
             "JSON、YAML、CSV、XML、TOMLのオールインワンツール。フォーマッター、バリデーター、ビジュアライザー、エディター。" :
            language === "ko" ?
             "JSON, YAML, CSV, XML 및 TOML을 위한 올인원 도구. 포맷터, 검증기, 시각화 도구 및 편집기." :
+           language === "de" ?
+            "All-in-One-Tool für JSON, YAML, CSV, XML und TOML. Formatierer, Validator, Visualisierer und Editor." :
             "All in one tool for JSON, YAML, CSV, XML, and TOML. Formatter, validator, visualizer, and editor."}
         </Title>
 
@@ -211,12 +233,14 @@ export const Features = () => {
                   {language === "zh" && feature.titleZh ? feature.titleZh : 
                    language === "ja" && feature.titleJa ? feature.titleJa : 
                    language === "ko" && feature.titleKo ? feature.titleKo : 
+                   language === "de" && feature.titleDe ? feature.titleDe : 
                    feature.title}
                 </Title>
                 <Text fz="sm" c="gray.8">
                   {language === "zh" && feature.descriptionZh ? feature.descriptionZh : 
                    language === "ja" && feature.descriptionJa ? feature.descriptionJa : 
                    language === "ko" && feature.descriptionKo ? feature.descriptionKo : 
+                   language === "de" && feature.descriptionDe ? feature.descriptionDe : 
                    feature.description}
                 </Text>
               </Flex>

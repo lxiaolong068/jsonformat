@@ -8,7 +8,7 @@
   },
   "homepage": "https://jsoncrack.com",
   "bugs": {
-    "url": "https://github.com/AykutSarac/jsoncrack.com/issues"
+    "url": "https://github.com/lxiaolong068/jsonformat/issues"
   },
   "scripts": {
     "dev": "next dev",

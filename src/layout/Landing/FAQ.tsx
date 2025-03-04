@@ -5,12 +5,14 @@ import EnQuestions from "src/data/faq.json";
 import ZhQuestions from "src/data/faq.zh.json";
 import JaQuestions from "src/data/faq.ja.json";
 import KoQuestions from "src/data/faq.ko.json";
+import DeQuestions from "src/data/faq.de.json";
 
 export const FAQ = () => {
   const { language } = useLanguage();
   const Questions = language === "zh" ? ZhQuestions : 
                    language === "ja" ? JaQuestions : 
                    language === "ko" ? KoQuestions :
+                   language === "de" ? DeQuestions :
                    EnQuestions;
   
   return (
@@ -30,6 +32,7 @@ export const FAQ = () => {
         {language === "zh" ? "常见问题" : 
          language === "ja" ? "よくある質問" : 
          language === "ko" ? "자주 묻는 질문" :
+         language === "de" ? "Häufig gestellte Fragen" :
          "Frequently Asked Questions"}
       </Title>
       <Accordion
