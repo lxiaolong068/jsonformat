@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import localFont from "next/font/local";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Image } from "@mantine/core";
 import styled from "styled-components";
 
@@ -36,14 +37,25 @@ interface LogoProps extends React.ComponentPropsWithoutRef<"div"> {
 }
 
 export const JSONCrackLogo = ({ fontSize = "1.2rem", hideText, hideLogo, ...props }: LogoProps) => {
-  const [isIframe, setIsIframe] = React.useState(false);
+  const [isWidget, setIsWidget] = React.useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    setIsIframe(window !== undefined && window.location.href.includes("widget"));
+    // 只有在嵌入式小部件模式下才在新窗口打开链接
+    setIsWidget(window !== undefined && window.location.href.includes("widget"));
   }, []);
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    // 如果是小部件模式，使用默认的链接行为（在新窗口打开）
+    if (isWidget) return;
+    
+    // 否则，阻止默认行为并使用路由导航
+    e.preventDefault();
+    router.push("/");
+  };
+
   return (
-    <Link href="/" prefetch={false} target={isIframe ? "_blank" : "_self"}>
+    <Link href="/" prefetch={false} target={isWidget ? "_blank" : "_self"} onClick={handleLogoClick}>
       <StyledLogoWrapper>
         {!hideLogo && (
           <Image

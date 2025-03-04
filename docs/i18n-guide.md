@@ -13,6 +13,7 @@
 7. [语言切换](#语言切换)
 8. [测试多语言功能](#测试多语言功能)
 9. [常见问题与解决方案](#常见问题与解决方案)
+10. [图片和资源路径处理](#图片和资源路径处理)
 
 ## 支持的语言
 
@@ -541,3 +542,115 @@ i18next.use(initReactI18next).init({
 - 重启开发服务器
 - 检查翻译文件格式是否正确（有效的 JSON）
 - 确保翻译键的路径正确
+
+## 图片和资源路径处理
+
+在多语言应用中，图片和资源路径的处理需要特别注意，以确保在不同语言环境下资源能够正确加载和显示。
+
+### 资源路径规范
+
+1. **静态资源路径**：所有静态资源（图片、图标、字体等）应统一存放在 `/public/assets/` 目录下，并使用绝对路径引用：
+
+```tsx
+// 正确的引用方式
+<Image src="/assets/logo.png" alt="Logo" />
+
+// 错误的引用方式
+<Image src="../images/logo.png" alt="Logo" />
+```
+
+2. **语言特定资源**：如果某些图片或资源需要根据语言变化（如带有文字的图片），应按照语言代码组织目录结构：
+
+```
+/public/assets/
+  ├── common/           # 通用资源，不随语言变化
+  │   ├── logo.png
+  │   └── favicon.ico
+  ├── en/               # 英文特定资源
+  │   ├── banner.png
+  │   └── diagram.svg
+  ├── zh/               # 中文特定资源
+  │   ├── banner.png
+  │   └── diagram.svg
+  └── ja/               # 日语特定资源
+      ├── banner.png
+      └── diagram.svg
+```
+
+在代码中根据当前语言动态引用：
+
+```tsx
+import { useLanguage } from 'src/contexts/LanguageContext';
+
+const Banner = () => {
+  const { language } = useLanguage();
+  
+  return (
+    <Image 
+      src={`/assets/${language}/banner.png`} 
+      alt="Banner" 
+    />
+  );
+};
+```
+
+### 图片替换最佳实践
+
+当需要替换图片资源时，请遵循以下最佳实践：
+
+1. **保持一致的命名规则**：新资源应遵循项目的命名规则，使用有意义的名称。
+
+2. **更新所有引用**：确保更新所有引用该资源的组件和文件。
+
+3. **维护图片尺寸一致性**：替换图片时应保持相似的尺寸比例，或在组件中明确设置尺寸属性。
+
+4. **检查响应式行为**：确保替换后的图片在不同屏幕尺寸下仍然表现良好。
+
+5. **优化图片大小**：新添加的图片应进行适当的压缩和优化，以提高加载性能。
+
+### 图片国际化示例
+
+以下是一个完整的示例，展示如何根据当前语言环境加载不同的图片资源：
+
+```tsx
+import { useLanguage } from 'src/contexts/LanguageContext';
+import { Image, Box } from '@mantine/core';
+
+const LocalizedDiagram = () => {
+  const { language } = useLanguage();
+  
+  // 根据语言选择合适的图片路径
+  const getImagePath = () => {
+    // 首先检查是否存在语言特定版本
+    if (['zh', 'ja'].includes(language)) {
+      return `/assets/${language}/diagram.png`;
+    }
+    
+    // 默认使用英文版本
+    return '/assets/en/diagram.png';
+  };
+  
+  return (
+    <Box>
+      <Image 
+        src={getImagePath()} 
+        alt="Diagram" 
+        width={600}
+        height="auto"
+        loading="lazy"
+      />
+    </Box>
+  );
+};
+```
+
+### 图片路径审查清单
+
+在提交代码前，请检查以下内容：
+
+- [ ] 所有图片资源使用正确的绝对路径（`/assets/...`）
+- [ ] 语言特定的图片已为所有支持的语言提供对应版本
+- [ ] 图片加载逻辑正确处理语言切换
+- [ ] 图片具有适当的 `alt` 属性，且该属性已翻译
+- [ ] 图片尺寸设置合理，支持响应式布局
+- [ ] 所有新增图片已优化大小
