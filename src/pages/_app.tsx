@@ -17,6 +17,15 @@ import { LanguageProvider } from "src/contexts/LanguageContext";
 // 导入 i18next 初始化
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
+// 导入翻译资源
+import enCommon from "../../public/locales/en/common.json";
+import zhCommon from "../../public/locales/zh/common.json";
+import jaCommon from "../../public/locales/ja/common.json";
+import koCommon from "../../public/locales/ko/common.json";
+import enEditor from "../../public/locales/en/editor.json";
+import zhEditor from "../../public/locales/zh/editor.json";
+import jaEditor from "../../public/locales/ja/editor.json";
+import koEditor from "../../public/locales/ko/editor.json";
 
 // 初始化 i18next
 i18next.use(initReactI18next).init({
@@ -25,6 +34,24 @@ i18next.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
+  resources: {
+    en: {
+      common: enCommon,
+      editor: enEditor
+    },
+    zh: {
+      common: zhCommon,
+      editor: zhEditor
+    },
+    ja: {
+      common: jaCommon,
+      editor: jaEditor
+    },
+    ko: {
+      common: koCommon,
+      editor: koEditor
+    }
+  }
 });
 
 const theme = createTheme({

@@ -24,6 +24,7 @@
 | en      | English | 默认语言 |
 | zh      | 中文    | 已支持 |
 | ja      | 日本語  | 已支持 |
+| ko      | 한국어  | 已支持 |
 
 ## 文件结构
 
@@ -113,7 +114,7 @@ const path = require('path');
 module.exports = {
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh', 'ja', 'your_new_locale'], // 添加新语言代码
+    locales: ['en', 'zh', 'ja', 'ko'], // 添加韩语代码 'ko'
     localeDetection: false,
   },
   localePath: path.resolve('./public/locales'),
@@ -149,17 +150,17 @@ cp -r public/locales/en/* public/locales/your_new_locale/
 import enTranslations from "../../public/locales/en/common.json";
 import zhTranslations from "../../public/locales/zh/common.json";
 import jaTranslations from "../../public/locales/ja/common.json";
-import newLocaleTranslations from '../../public/locales/your_new_locale/common.json';
+import koTranslations from "../../public/locales/ko/common.json"; // 导入韩语翻译
 
 // 2. 更新 Language 类型
-type Language = "en" | "zh" | "ja" | "your_new_locale";
+type Language = "en" | "zh" | "ja" | "ko";
 
 // 3. 更新 translations 对象
 const translations: Record<Language, Translations> = {
   en: enTranslations,
   zh: zhTranslations,
   ja: jaTranslations,
-  your_new_locale: newLocaleTranslations,
+  ko: koTranslations, // 添加韩语翻译
 };
 ```
 
@@ -193,14 +194,14 @@ export const LanguageSwitcher = () => {
           {language === 'en' ? 'English' : 
            language === 'zh' ? '中文' : 
            language === 'ja' ? '日本語' :
-           language === 'your_new_locale' ? '新语言名称' : 'English'}
+           language === 'ko' ? '한국어' : 'English'}
         </Button>
       </Menu.Target>
       <Menu.Dropdown>
         <Menu.Item onClick={() => changeLanguage('en')}>English</Menu.Item>
         <Menu.Item onClick={() => changeLanguage('zh')}>中文</Menu.Item>
         <Menu.Item onClick={() => changeLanguage('ja')}>日本語</Menu.Item>
-        <Menu.Item onClick={() => changeLanguage('your_new_locale')}>新语言名称</Menu.Item>
+        <Menu.Item onClick={() => changeLanguage('ko')}>한국어</Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );
@@ -224,14 +225,16 @@ export const LanguageSwitcher = () => {
 <Button>
   {language === "en" ? "English" : 
    language === "zh" ? "中文" : 
-   language === "ja" ? "日本語" : "English"}
+   language === "ja" ? "日本語" : 
+   language === "ko" ? "한국어" : "English"}
 </Button>
 
 // 错误的实现 - 不要使用中文描述其他语言
 <Button>
   {language === "en" ? "英语" : 
    language === "zh" ? "中文" : 
-   language === "ja" ? "日本语" : "英语"}
+   language === "ja" ? "日本语" : 
+   language === "ko" ? "한국어" : "英语"}
 </Button>
 ```
 
@@ -428,13 +431,13 @@ const changeLanguage = (locale: string) => {
 ```tsx
 useEffect(() => {
   // 首先检查 URL 中的 locale 参数
-  if (router?.locale && (router.locale === "en" || router.locale === "zh" || router.locale === "ja")) {
+  if (router?.locale && (router.locale === "en" || router.locale === "zh" || router.locale === "ja" || router.locale === "ko")) {
     setLanguage(router.locale as Language);
     localStorage.setItem("language", router.locale);
   } else {
     // 如果 URL 中没有 locale 参数，则从 localStorage 获取保存的语言设置
     const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "zh" || savedLanguage === "ja")) {
+    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "zh" || savedLanguage === "ja" || savedLanguage === "ko")) {
       setLanguage(savedLanguage);
     }
   }
@@ -622,7 +625,7 @@ const LocalizedDiagram = () => {
   // 根据语言选择合适的图片路径
   const getImagePath = () => {
     // 首先检查是否存在语言特定版本
-    if (['zh', 'ja'].includes(language)) {
+    if (['zh', 'ja', 'ko'].includes(language)) {
       return `/assets/${language}/diagram.png`;
     }
     

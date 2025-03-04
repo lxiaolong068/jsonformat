@@ -125,7 +125,7 @@ export const ViewMenu = () => {
           {graphCollapsed ? t("editor.viewMenu.expandGraph") : t("editor.viewMenu.collapseGraph")}
         </Menu.Item>
         <Menu.Item fz={12} leftSection={<VscTarget />} onClick={focusFirstNode}>
-          {t("editor.viewMenu.focusFirstNode")}
+          {t("editor.viewMenu.focusRootNode")}
         </Menu.Item>
         <Menu.Divider />
         {/* 暂时注释掉 CompareModal 功能，因为该模态框组件尚未实现

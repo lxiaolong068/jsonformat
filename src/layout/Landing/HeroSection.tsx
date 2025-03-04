@@ -113,6 +113,7 @@ export const HeroSection = () => {
             <Flex align="center" gap={5}>
               {language === "zh" ? "由" : 
                language === "ja" ? "開発元" : 
+               language === "ko" ? "제작" : 
                "built by"}
               <Image
                 src="/assets/todiagram_logo.png"
@@ -121,12 +122,16 @@ export const HeroSection = () => {
                 w="fit-content"
                 loading="eager"
               />
-              {language === "zh" ? "构建" : language === "ja" ? "構築" : ""}
+              {language === "zh" ? "构建" : 
+               language === "ja" ? "構築" : 
+               language === "ko" ? "제작" : 
+               ""}
             </Flex>
           </Link>
           <StyledHeroTitle>
             {language === "zh" ? "将JSON可视化为交互式图表" : 
              language === "ja" ? "JSONをインタラクティブなグラフに可視化" : 
+             language === "ko" ? "JSON을 인터랙티브 그래프로 시각화" : 
              "Visualize JSON into interactive graphs"}
           </StyledHeroTitle>
           <StyledHeroText>
@@ -134,6 +139,8 @@ export const HeroSection = () => {
               <>最佳在线JSON查看工具，用于<strong>可视化</strong>、<strong>格式化</strong>和<strong>探索</strong>。</>
             ) : language === "ja" ? (
               <>最高のオンラインJSONビューアツールで<strong>可視化</strong>、<strong>フォーマット</strong>、<strong>探索</strong>。</>
+            ) : language === "ko" ? (
+              <>최고의 온라인 JSON 뷰어 도구로 <strong>시각화</strong>, <strong>포맷</strong> 및 <strong>탐색</strong>하세요.</>
             ) : (
               <>The best online JSON viewer tool to <strong>visualize</strong>, <strong>format</strong>{" "}
               and <strong>explore</strong>.</>
@@ -152,6 +159,7 @@ export const HeroSection = () => {
             >
               {language === "zh" ? "前往编辑器" : 
                language === "ja" ? "エディターへ" : 
+               language === "ko" ? "에디터로 이동" : 
                "Go to Editor"}
             </Button>
           </Flex>
@@ -167,6 +175,7 @@ export const HeroSection = () => {
             >
               {language === "zh" ? "前往编辑器" : 
                language === "ja" ? "エディターへ" : 
+               language === "ko" ? "에디터로 이동" : 
                "Go to Editor"}
             </Button>
           </Flex>

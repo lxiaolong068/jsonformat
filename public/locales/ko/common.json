@@ -1,0 +1,13 @@
+{
+  "title": "JSON Crack",
+  "subtitle": "JSON 포맷터에 시간을 낭비하지 마세요",
+  "description": "코드 줄에서 길을 잃는 시대는 끝났습니다. JsonFormat은 데이터를 가장 최적의 방식으로 보여주어 그 어느 때보다 빠르게 통찰력을 얻을 수 있게 해줍니다.",
+  "useForFree": "무료로 사용하기",
+  "features": {
+    "clearPresentation": "명확하고 간결한 데이터 표현",
+    "fastDecision": "빠른 의사 결정",
+    "graspPatterns": "패턴과 관계를 더 빠르게 파악",
+    "shareInsights": "팀과 더 쉽게 통찰력 공유"
+  },
+  "goToEditor": "에디터로 이동"
+} 

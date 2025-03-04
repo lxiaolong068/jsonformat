@@ -10,7 +10,9 @@ import { LuGlobe } from "react-icons/lu";
 import { MdCompare, MdFilterListAlt } from "react-icons/md";
 import { SiJsonwebtokens } from "react-icons/si";
 import { VscSearchFuzzy, VscJson, VscGroupByRefType, VscLock } from "react-icons/vsc";
-// 导入翻译hook
+// 导入自定义的useLanguage钩子
+import { useLanguage } from "src/contexts/LanguageContext";
+// 保留next-i18next的useTranslation以便平滑过渡
 import { useTranslation } from "next-i18next";
 import { jsonToContent } from "src/lib/utils/jsonAdapter";
 import useFile from "src/store/useFile";
@@ -23,8 +25,17 @@ export const ToolsMenu = () => {
   const getJson = useJson(state => state.getJson);
   const setContents = useFile(state => state.setContents);
   const getFormat = useFile(state => state.getFormat);
-  // 使用翻译函数
-  const { t } = useTranslation("editor");
+  // 使用自定义的useLanguage钩子
+  const { t: customT } = useLanguage();
+  // 保留next-i18next的useTranslation以便平滑过渡
+  const { t: i18nextT } = useTranslation("editor");
+
+  // 组合使用两种翻译函数，优先使用自定义的翻译
+  const t = (key: string) => {
+    const customTranslation = customT(key);
+    // 如果自定义翻译返回的是键名本身，说明没有找到翻译，尝试使用next-i18next
+    return customTranslation === key ? i18nextT(key) : customTranslation;
+  };
 
   const randomizeData = async () => {
     try {

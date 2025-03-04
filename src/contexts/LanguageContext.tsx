@@ -1,11 +1,18 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
 import { useRouter } from "next/router";
-import enTranslations from "../../public/locales/en/common.json";
-import zhTranslations from "../../public/locales/zh/common.json";
-import jaTranslations from "../../public/locales/ja/common.json";
+import enCommonTranslations from "../../public/locales/en/common.json";
+import zhCommonTranslations from "../../public/locales/zh/common.json";
+import jaCommonTranslations from "../../public/locales/ja/common.json";
+import koCommonTranslations from "../../public/locales/ko/common.json";
+import enEditorTranslations from "../../public/locales/en/editor.json";
+import zhEditorTranslations from "../../public/locales/zh/editor.json";
+import jaEditorTranslations from "../../public/locales/ja/editor.json";
+import koEditorTranslations from "../../public/locales/ko/editor.json";
 
-type Translations = typeof enTranslations;
-type Language = "en" | "zh" | "ja";
+type CommonTranslations = typeof enCommonTranslations;
+type EditorTranslations = typeof enEditorTranslations;
+type Translations = CommonTranslations & EditorTranslations;
+type Language = "en" | "zh" | "ja" | "ko";
 
 interface LanguageContextType {
   language: Language;
@@ -14,9 +21,10 @@ interface LanguageContextType {
 }
 
 const translations: Record<Language, Translations> = {
-  en: enTranslations,
-  zh: zhTranslations,
-  ja: jaTranslations,
+  en: { ...enCommonTranslations, ...enEditorTranslations },
+  zh: { ...zhCommonTranslations, ...zhEditorTranslations },
+  ja: { ...jaCommonTranslations, ...jaEditorTranslations },
+  ko: { ...koCommonTranslations, ...koEditorTranslations },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -32,13 +40,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   useEffect(() => {
     // 首先检查URL中的locale参数
-    if (router?.locale && (router.locale === "en" || router.locale === "zh" || router.locale === "ja")) {
+    if (router?.locale && (router.locale === "en" || router.locale === "zh" || router.locale === "ja" || router.locale === "ko")) {
       setLanguage(router.locale as Language);
       localStorage.setItem("language", router.locale);
     } else {
       // 如果URL中没有locale参数，则从localStorage获取保存的语言设置
       const savedLanguage = localStorage.getItem("language") as Language;
-      if (savedLanguage && (savedLanguage === "en" || savedLanguage === "zh" || savedLanguage === "ja")) {
+      if (savedLanguage && (savedLanguage === "en" || savedLanguage === "zh" || savedLanguage === "ja" || savedLanguage === "ko")) {
         setLanguage(savedLanguage);
       }
     }
