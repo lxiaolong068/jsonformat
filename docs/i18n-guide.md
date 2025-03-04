@@ -1,6 +1,6 @@
-# 多语言开发规范与模板
+# JSON Format 国际化开发指南
 
-本文档提供了在JsonFormat项目中添加和管理多语言支持的完整指南。遵循这些规范可以确保多语言功能的一致性和可维护性。
+本文档提供了在 JSON Format 项目中添加和管理多语言支持的完整指南。遵循这些规范可以确保多语言功能的一致性和可维护性。
 
 ## 目录
 
@@ -12,6 +12,7 @@
 6. [服务端渲染支持](#服务端渲染支持)
 7. [语言切换](#语言切换)
 8. [测试多语言功能](#测试多语言功能)
+9. [常见问题与解决方案](#常见问题与解决方案)
 
 ## 支持的语言
 
@@ -21,6 +22,7 @@
 |---------|---------|------|
 | en      | English | 默认语言 |
 | zh      | 中文    | 已支持 |
+| ja      | 日本語  | 已支持 |
 
 ## 文件结构
 
@@ -31,16 +33,70 @@
   ├── en/                 # 英文翻译
   │   ├── common.json     # 通用翻译
   │   └── editor.json     # 编辑器页面翻译
-  └── zh/                 # 中文翻译
+  ├── zh/                 # 中文翻译
+  │   ├── common.json     # 通用翻译
+  │   └── editor.json     # 编辑器页面翻译
+  └── ja/                 # 日语翻译
       ├── common.json     # 通用翻译
       └── editor.json     # 编辑器页面翻译
 ```
 
 主要配置文件：
 
-- `/next-i18next.config.js` - next-i18next配置
+- `/next-i18next.config.js` - next-i18next 配置
 - `/src/contexts/LanguageContext.tsx` - 语言上下文管理
 - `/src/components/LanguageSwitcher.tsx` - 语言切换组件
+
+### 翻译文件示例
+
+**common.json**
+
+```json
+{
+  "navbar": {
+    "home": "首页",
+    "editor": "编辑器",
+    "converter": "格式转换",
+    "type": "类型生成",
+    "docs": "文档"
+  },
+  "buttons": {
+    "copy": "复制",
+    "download": "下载",
+    "clear": "清除",
+    "import": "导入",
+    "export": "导出"
+  },
+  "messages": {
+    "copied": "已复制到剪贴板",
+    "downloaded": "文件已下载",
+    "error": "发生错误"
+  }
+}
+```
+
+**editor.json**
+
+```json
+{
+  "toolbar": {
+    "file": "文件",
+    "view": "视图",
+    "tools": "工具",
+    "options": "选项"
+  },
+  "views": {
+    "graph": "图形视图",
+    "tree": "树形视图"
+  },
+  "fileMenu": {
+    "new": "新建",
+    "open": "打开",
+    "save": "保存",
+    "saveAs": "另存为"
+  }
+}
+```
 
 ## 添加新语言
 
@@ -51,13 +107,19 @@
 在 `next-i18next.config.js` 中添加新语言：
 
 ```javascript
+const path = require('path');
+
 module.exports = {
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh', 'your_new_locale'], // 添加新语言代码
+    locales: ['en', 'zh', 'ja', 'your_new_locale'], // 添加新语言代码
     localeDetection: false,
   },
-  localePath: './public/locales',
+  localePath: path.resolve('./public/locales'),
+  reloadOnPrerender: process.env.NODE_ENV === 'development',
+  react: {
+    useSuspense: false,
+  }
 }
 ```
 
@@ -77,21 +139,25 @@ module.exports = {
 cp -r public/locales/en/* public/locales/your_new_locale/
 ```
 
-### 3. 更新LanguageContext
+### 3. 更新 LanguageContext
 
 在 `src/contexts/LanguageContext.tsx` 中添加新语言支持：
 
 ```typescript
 // 1. 导入新语言的翻译文件
+import enTranslations from "../../public/locales/en/common.json";
+import zhTranslations from "../../public/locales/zh/common.json";
+import jaTranslations from "../../public/locales/ja/common.json";
 import newLocaleTranslations from '../../public/locales/your_new_locale/common.json';
 
-// 2. 更新Language类型
-type Language = 'en' | 'zh' | 'your_new_locale';
+// 2. 更新 Language 类型
+type Language = "en" | "zh" | "ja" | "your_new_locale";
 
-// 3. 更新translations对象
+// 3. 更新 translations 对象
 const translations: Record<Language, Translations> = {
   en: enTranslations,
   zh: zhTranslations,
+  ja: jaTranslations,
   your_new_locale: newLocaleTranslations,
 };
 ```
@@ -101,18 +167,70 @@ const translations: Record<Language, Translations> = {
 在 `src/components/LanguageSwitcher.tsx` 中添加新语言选项：
 
 ```tsx
-<Menu.Dropdown>
-  <Menu.Item onClick={() => changeLanguage('en')}>English</Menu.Item>
-  <Menu.Item onClick={() => changeLanguage('zh')}>中文</Menu.Item>
-  <Menu.Item onClick={() => changeLanguage('your_new_locale')}>新语言名称</Menu.Item>
-</Menu.Dropdown>
+import { Menu, Button } from "@mantine/core";
+import { useRouter } from "next/router";
+import { FaGlobe } from "react-icons/fa";
+import { useLanguage } from "src/contexts/LanguageContext";
+
+export const LanguageSwitcher = () => {
+  const { language, setLanguage } = useLanguage();
+  const router = useRouter();
+  const { pathname, asPath, query } = router;
+
+  const changeLanguage = (locale: string) => {
+    // 更新 LanguageContext 中的语言状态
+    setLanguage(locale as Language);
+    
+    // 同时更新 next-i18next 的语言设置，通过路由切换
+    router.push({ pathname, query }, asPath, { locale });
+  };
+
+  return (
+    <Menu>
+      <Menu.Target>
+        <Button variant="subtle" leftSection={<FaGlobe />}>
+          {language === 'en' ? 'English' : 
+           language === 'zh' ? '中文' : 
+           language === 'ja' ? '日本語' :
+           language === 'your_new_locale' ? '新语言名称' : 'English'}
+        </Button>
+      </Menu.Target>
+      <Menu.Dropdown>
+        <Menu.Item onClick={() => changeLanguage('en')}>English</Menu.Item>
+        <Menu.Item onClick={() => changeLanguage('zh')}>中文</Menu.Item>
+        <Menu.Item onClick={() => changeLanguage('ja')}>日本語</Menu.Item>
+        <Menu.Item onClick={() => changeLanguage('your_new_locale')}>新语言名称</Menu.Item>
+      </Menu.Dropdown>
+    </Menu>
+  );
+};
 ```
 
-同时更新显示当前语言的逻辑：
+### 5. 语言显示规范
 
+在语言切换组件中，必须使用各语言的原生写法显示语言名称，而不是用中文或英文来描述其他语言：
+
+- 英语：使用 "English"（而非"英语"或"英文"）
+- 中文：使用 "中文"（而非"Chinese"）
+- 日语：使用 "日本語"（而非"日本语"或"Japanese"）
+- 其他语言：必须使用该语言自己的原生写法
+
+这确保了用户能够在自己的语言中识别语言选项，提高了用户体验。特别是对于非拉丁字母的语言（如日语、阿拉伯语、俄语等），使用其原生文字表示更有助于用户识别。
+
+示例：
 ```tsx
-<Button variant="subtle" leftSection={<FaGlobe />}>
-  {language === 'en' ? 'English' : language === 'zh' ? '中文' : '新语言名称'}
+// 正确的实现
+<Button>
+  {language === "en" ? "English" : 
+   language === "zh" ? "中文" : 
+   language === "ja" ? "日本語" : "English"}
+</Button>
+
+// 错误的实现 - 不要使用中文描述其他语言
+<Button>
+  {language === "en" ? "英语" : 
+   language === "zh" ? "中文" : 
+   language === "ja" ? "日本语" : "英语"}
 </Button>
 ```
 
@@ -132,6 +250,18 @@ const translations: Record<Language, Translations> = {
 - 使用点表示法组织嵌套结构，如 `features.clearPresentation`
 - 使用有意义的键名，反映内容而不是位置
 - 保持键名一致性，避免重复
+- 使用小驼峰命名法（camelCase）
+
+**推荐的键名结构：**
+
+```
+功能区域.子区域.具体功能
+```
+
+例如：
+- `navbar.home` - 导航栏中的首页链接
+- `editor.toolbar.file` - 编辑器工具栏中的文件菜单
+- `converter.formats.json` - 转换器中的 JSON 格式选项
 
 ### 变量插值
 
@@ -139,7 +269,9 @@ const translations: Record<Language, Translations> = {
 
 ```json
 {
-  "welcome": "欢迎，{{name}}！"
+  "welcome": "欢迎，{{name}}！",
+  "fileSize": "文件大小：{{size}} KB",
+  "itemCount": "共有 {{count}} 个项目"
 }
 ```
 
@@ -147,16 +279,43 @@ const translations: Record<Language, Translations> = {
 
 ```tsx
 t('welcome', { name: userName })
+t('fileSize', { size: (fileSize / 1024).toFixed(2) })
+t('itemCount', { count: items.length })
+```
+
+### 复数形式
+
+对于需要处理复数形式的文本，使用以下格式：
+
+```json
+{
+  "itemCount_one": "{{count}} 个项目",
+  "itemCount_other": "{{count}} 个项目"
+}
+```
+
+在英文版本中可能需要区分单复数：
+
+```json
+{
+  "itemCount_one": "{{count}} item",
+  "itemCount_other": "{{count}} items"
+}
 ```
 
 ## 组件中使用翻译
 
-### 使用LanguageContext
+JSON Format 项目使用两种翻译方法：
+
+1. 自定义的 `LanguageContext` 用于客户端翻译
+2. `next-i18next` 用于服务端渲染的翻译
+
+### 使用 LanguageContext
 
 在函数组件中使用翻译：
 
 ```tsx
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from 'src/contexts/LanguageContext';
 
 const MyComponent = () => {
   const { t } = useLanguage();
@@ -165,12 +324,16 @@ const MyComponent = () => {
     <div>
       <h1>{t('common.title')}</h1>
       <p>{t('common.description')}</p>
+      <button>{t('buttons.save')}</button>
+      
+      {/* 使用变量 */}
+      <p>{t('welcome', { name: userName })}</p>
     </div>
   );
 };
 ```
 
-### 使用next-i18next (服务端渲染)
+### 使用 next-i18next (服务端渲染)
 
 在页面组件中使用服务端渲染的翻译：
 
@@ -179,11 +342,21 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Page = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'editor']);
   
   return (
     <div>
-      <h1>{t('title')}</h1>
+      <h1>{t('common:title')}</h1>
+      <p>{t('common:description')}</p>
+      
+      {/* 使用特定命名空间 */}
+      <div>
+        <h2>{t('editor:toolbar.file')}</h2>
+        <button>{t('editor:fileMenu.new')}</button>
+      </div>
+      
+      {/* 使用变量 */}
+      <p>{t('common:welcome', { name: userName })}</p>
     </div>
   );
 };
@@ -191,7 +364,7 @@ const Page = () => {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
+      ...(await serverSideTranslations(locale || 'en', ['common', 'editor'])),
     },
   };
 };
@@ -204,16 +377,26 @@ export default Page;
 对于需要服务端渲染的页面，必须在 `getStaticProps` 或 `getServerSideProps` 中加载翻译：
 
 ```tsx
+// 使用 getStaticProps（静态生成的页面）
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common', 'other-namespace'])),
+      ...(await serverSideTranslations(locale || 'en', ['common', 'editor'])),
+    },
+  };
+};
+
+// 使用 getServerSideProps（服务端渲染的页面）
+export const getServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'en', ['common', 'editor'])),
     },
   };
 };
 ```
 
-确保加载页面所需的所有命名空间。
+确保加载页面所需的所有命名空间。如果页面使用了多个组件，每个组件可能需要不同的命名空间，请确保所有需要的命名空间都被加载。
 
 ## 语言切换
 
@@ -225,12 +408,36 @@ export const getStaticProps = async ({ locale }) => {
 
 ```tsx
 const changeLanguage = (locale: string) => {
-  // 更新LanguageContext中的语言状态
+  // 更新 LanguageContext 中的语言状态
   setLanguage(locale as Language);
   
-  // 同时更新next-i18next的语言设置，通过路由切换
+  // 同时更新 next-i18next 的语言设置，通过路由切换
   router.push({ pathname, query }, asPath, { locale });
 };
+```
+
+### 语言检测与默认语言
+
+项目使用以下逻辑确定用户语言：
+
+1. 首先检查 URL 中的 locale 参数
+2. 如果 URL 中没有 locale 参数，则从 localStorage 获取保存的语言设置
+3. 如果 localStorage 中没有保存语言设置，则使用默认语言（英文）
+
+```tsx
+useEffect(() => {
+  // 首先检查 URL 中的 locale 参数
+  if (router?.locale && (router.locale === "en" || router.locale === "zh" || router.locale === "ja")) {
+    setLanguage(router.locale as Language);
+    localStorage.setItem("language", router.locale);
+  } else {
+    // 如果 URL 中没有 locale 参数，则从 localStorage 获取保存的语言设置
+    const savedLanguage = localStorage.getItem("language") as Language;
+    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "zh" || savedLanguage === "ja")) {
+      setLanguage(savedLanguage);
+    }
+  }
+}, [router?.locale]);
 ```
 
 ## 测试多语言功能
@@ -243,52 +450,94 @@ const changeLanguage = (locale: string) => {
 4. 服务端渲染页面是否正确显示翻译
 5. 检查是否有缺失的翻译键
 
+### 测试方法
+
+1. **视觉检查**：切换到新语言，浏览所有页面和功能，确保所有文本都已翻译。
+2. **功能测试**：确保语言切换后所有功能仍然正常工作。
+3. **刷新测试**：切换语言后刷新页面，确保语言设置被保留。
+4. **URL 测试**：检查 URL 中的语言参数是否正确更新。
+5. **控制台检查**：查看浏览器控制台是否有与翻译相关的错误或警告。
+
 ### 新语言添加检查清单
 
 - [ ] 在 `next-i18next.config.js` 中添加新语言
 - [ ] 创建所有必要的翻译文件
 - [ ] 更新 LanguageContext 支持新语言
-- [ ] 更新语言切换组件
+- [ ] 更新 LanguageSwitcher 组件
 - [ ] 测试所有页面和功能
+- [ ] 更新文档
 
-## 语言文件模板
+## 常见问题与解决方案
 
-以下是添加新语言时可以使用的模板：
+### 1. 翻译未显示或显示键名
 
-### common.json 模板
+**问题**：页面上显示翻译键名而不是翻译文本。
 
-```json
-{
-  "title": "JSON Crack",
-  "subtitle": "[翻译此处]",
-  "description": "[翻译此处]",
-  "useForFree": "[翻译此处]",
-  "features": {
-    "clearPresentation": "[翻译此处]",
-    "fastDecision": "[翻译此处]",
-    "graspPatterns": "[翻译此处]",
-    "shareInsights": "[翻译此处]"
+**可能原因**：
+- 翻译文件中缺少该键
+- 命名空间不正确
+- 翻译文件未正确加载
+
+**解决方案**：
+- 检查翻译文件中是否存在该键
+- 确保使用了正确的命名空间
+- 在服务端渲染页面中，确保在 `getStaticProps` 或 `getServerSideProps` 中加载了正确的命名空间
+
+### 2. 服务端渲染页面显示默认语言
+
+**问题**：切换语言后，服务端渲染的页面仍显示默认语言。
+
+**可能原因**：
+- 未在 `getStaticProps` 或 `getServerSideProps` 中正确处理 locale 参数
+- next-i18next 配置问题
+
+**解决方案**：
+- 确保在 `getStaticProps` 或 `getServerSideProps` 中正确使用 locale 参数
+- 检查 next-i18next 配置是否正确
+
+### 3. 语言切换后 URL 未更新
+
+**问题**：切换语言后 URL 中的语言参数未更新。
+
+**可能原因**：
+- 路由切换代码有问题
+
+**解决方案**：
+- 确保正确使用 `router.push` 方法，包含 locale 参数
+
+### 4. i18next 警告：NO_I18NEXT_INSTANCE
+
+**问题**：控制台显示警告 "react-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next"
+
+**可能原因**：
+- i18next 未正确初始化
+
+**解决方案**：
+- 在 `_app.tsx` 中添加 i18next 初始化代码：
+
+```tsx
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+
+// 初始化 i18next
+i18next.use(initReactI18next).init({
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
   },
-  "goToEditor": "[翻译此处]",
-  "vsCode": "[翻译此处]",
-  "openSource": "[翻译此处]",
-  "tools": "[翻译此处]",
-  "converter": "[翻译此处]",
-  "converterDesc": "[翻译此处]",
-  "generateTypes": "[翻译此处]",
-  "generateTypesDesc": "[翻译此处]",
-  "jsonSchema": "[翻译此处]",
-  "jsonSchemaDesc1": "[翻译此处]",
-  "jsonSchemaDesc2": "[翻译此处]",
-  "upgrade": "[翻译此处]",
-  "editor": "[翻译此处]"
-}
+});
 ```
 
-### editor.json 模板
+### 5. 新添加的翻译不生效
 
-```json
-{
-  "// 从英文版复制并翻译所有键": ""
-}
-```
+**问题**：添加新的翻译后，页面上未显示新翻译。
+
+**可能原因**：
+- 开发服务器缓存问题
+- 翻译文件格式错误
+
+**解决方案**：
+- 重启开发服务器
+- 检查翻译文件格式是否正确（有效的 JSON）
+- 确保翻译键的路径正确

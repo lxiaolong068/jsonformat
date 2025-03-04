@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# Your rule content
+
+- 严格按照[i18n-guide.md](mdc:docs/i18n-guide.md)里的说明开发多语言功能

@@ -1,0 +1,25 @@
+{
+  "title": "JSON Crack",
+  "subtitle": "JSON フォーマッターに時間を無駄にしないでください",
+  "description": "コードの行に迷う日々は終わりました。JsonFormat は最適なデータビューを提供し、これまでよりも速く洞察を得ることができます。",
+  "useForFree": "無料で使用",
+  "features": {
+    "clearPresentation": "明確で簡潔なデータ表示",
+    "fastDecision": "迅速な意思決定",
+    "graspPatterns": "パターンと関係をより速く把握",
+    "shareInsights": "チームとの洞察の共有が容易"
+  },
+  "goToEditor": "エディターへ",
+  "vsCode": "VS Code",
+  "openSource": "オープンソース",
+  "tools": "ツール",
+  "converter": "コンバーター",
+  "converterDesc": "JSONをYAMLに、CSVをJSONに、YAMLをXMLに変換するなど。",
+  "generateTypes": "型の生成",
+  "generateTypesDesc": "TypeScript型、Golang構造体、Rustなどを生成します。",
+  "jsonSchema": "JSON Schema",
+  "jsonSchemaDesc1": "JSONデータからJSON schemaを生成します。",
+  "jsonSchemaDesc2": "JSON schemaからJSONデータを生成します。",
+  "upgrade": "アップグレード",
+  "editor": "エディター"
+} 

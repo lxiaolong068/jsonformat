@@ -2,9 +2,10 @@ import React, { createContext, useState, useContext, useEffect, ReactNode } from
 import { useRouter } from "next/router";
 import enTranslations from "../../public/locales/en/common.json";
 import zhTranslations from "../../public/locales/zh/common.json";
+import jaTranslations from "../../public/locales/ja/common.json";
 
 type Translations = typeof enTranslations;
-type Language = "en" | "zh";
+type Language = "en" | "zh" | "ja";
 
 interface LanguageContextType {
   language: Language;
@@ -15,6 +16,7 @@ interface LanguageContextType {
 const translations: Record<Language, Translations> = {
   en: enTranslations,
   zh: zhTranslations,
+  ja: jaTranslations,
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -30,13 +32,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   useEffect(() => {
     // 首先检查URL中的locale参数
-    if (router?.locale && (router.locale === "en" || router.locale === "zh")) {
+    if (router?.locale && (router.locale === "en" || router.locale === "zh" || router.locale === "ja")) {
       setLanguage(router.locale as Language);
       localStorage.setItem("language", router.locale);
     } else {
       // 如果URL中没有locale参数，则从localStorage获取保存的语言设置
       const savedLanguage = localStorage.getItem("language") as Language;
-      if (savedLanguage && (savedLanguage === "en" || savedLanguage === "zh")) {
+      if (savedLanguage && (savedLanguage === "en" || savedLanguage === "zh" || savedLanguage === "ja")) {
         setLanguage(savedLanguage);
       }
     }

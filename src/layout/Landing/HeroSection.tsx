@@ -109,9 +109,11 @@ export const HeroSection = () => {
     <StyledHeroSection>
       <StyledHeroSectionBody>
         <Stack flex="1" miw={250} mx="auto" align="center">
-          <Link href="https://todiagram.com?ref=jsoncrack.com" rel="noopener">
-            <Flex justify="center" fz="sm" c="gray.8" gap="8" align="center">
-              {language === "zh" ? "由" : "built by"}
+          <Link href="https://todiagram.com" target="_blank">
+            <Flex align="center" gap={5}>
+              {language === "zh" ? "由" : 
+               language === "ja" ? "開発元" : 
+               "built by"}
               <Image
                 src="/assets/todiagram_logo.png"
                 alt="Todiagram Logo"
@@ -119,13 +121,19 @@ export const HeroSection = () => {
                 w="fit-content"
                 loading="eager"
               />
-              {language === "zh" ? "构建" : ""}
+              {language === "zh" ? "构建" : language === "ja" ? "構築" : ""}
             </Flex>
           </Link>
-          <StyledHeroTitle>{language === "zh" ? "将JSON可视化为交互式图表" : "Visualize JSON into interactive graphs"}</StyledHeroTitle>
+          <StyledHeroTitle>
+            {language === "zh" ? "将JSON可视化为交互式图表" : 
+             language === "ja" ? "JSONをインタラクティブなグラフに可視化" : 
+             "Visualize JSON into interactive graphs"}
+          </StyledHeroTitle>
           <StyledHeroText>
             {language === "zh" ? (
               <>最佳在线JSON查看工具，用于<strong>可视化</strong>、<strong>格式化</strong>和<strong>探索</strong>。</>
+            ) : language === "ja" ? (
+              <>最高のオンラインJSONビューアツールで<strong>可視化</strong>、<strong>フォーマット</strong>、<strong>探索</strong>。</>
             ) : (
               <>The best online JSON viewer tool to <strong>visualize</strong>, <strong>format</strong>{" "}
               and <strong>explore</strong>.</>
@@ -142,7 +150,9 @@ export const HeroSection = () => {
               rightSection={<FaChevronRight />}
               fw="500"
             >
-              {language === "zh" ? "前往编辑器" : "Go to Editor"}
+              {language === "zh" ? "前往编辑器" : 
+               language === "ja" ? "エディターへ" : 
+               "Go to Editor"}
             </Button>
           </Flex>
           <Flex gap="lg" wrap="wrap" justify="center" visibleFrom="xs">
@@ -155,7 +165,9 @@ export const HeroSection = () => {
               rightSection={<FaChevronRight />}
               fw="500"
             >
-              {language === "zh" ? "前往编辑器" : "Go to Editor"}
+              {language === "zh" ? "前往编辑器" : 
+               language === "ja" ? "エディターへ" : 
+               "Go to Editor"}
             </Button>
           </Flex>
         </Stack>
