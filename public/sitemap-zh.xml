@@ -8,7 +8,7 @@
   <xhtml:link rel="alternate" hreflang="zh" href="https://www.jsonformat.help/zh"/>
   <xhtml:link rel="alternate" hreflang="ja" href="https://www.jsonformat.help/ja"/>
   <xhtml:link rel="alternate" hreflang="ko" href="https://www.jsonformat.help/ko"/>
-  <xhtml:link rel="alternate" hreflang="de" href="https://www.jsonformat.help/de"/>
+  <xhtml:link rel="alternate" hreflang="xhtml:de" href="https://www.jsonformat.help/de"/>
 </url>
 <url>
   <loc>https://www.jsonformat.help/zh/editor/</loc>
@@ -18,6 +18,6 @@
   <xhtml:link rel="alternate" hreflang="zh" href="https://www.jsonformat.help/zh/editor/"/>
   <xhtml:link rel="alternate" hreflang="ja" href="https://www.jsonformat.help/ja/editor/"/>
   <xhtml:link rel="alternate" hreflang="ko" href="https://www.jsonformat.help/ko/editor/"/>
-  <xhtml:link rel="alternate" hreflang="de" href="https://www.jsonformat.help/de/editor/"/>
+  <xhtml:link rel="alternate" hreflang="xhtml:de" href="https://www.jsonformat.help/de/editor/"/>
 </url>
 </urlset>
