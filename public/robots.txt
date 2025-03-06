@@ -1,5 +1,9 @@
+# *
 User-agent: *
-
 Allow: /
 
-Sitemap: https://jsoncrack.com/sitemap.xml
+# Host
+Host: https://www.jsonformat.help
+
+# Sitemaps
+Sitemap: https://www.jsonformat.help/sitemap.xml

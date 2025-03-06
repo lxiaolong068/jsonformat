@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>https://jsoncrack.com/sitemap-0.xml</loc></sitemap>
+<sitemap><loc>https://www.jsonformat.help/sitemap-0.xml</loc></sitemap>
+<sitemap><loc>https://www.jsonformat.help/sitemap-en.xml</loc></sitemap>
+<sitemap><loc>https://www.jsonformat.help/sitemap-zh.xml</loc></sitemap>
+<sitemap><loc>https://www.jsonformat.help/sitemap-ja.xml</loc></sitemap>
+<sitemap><loc>https://www.jsonformat.help/sitemap-ko.xml</loc></sitemap>
+<sitemap><loc>https://www.jsonformat.help/sitemap-de.xml</loc></sitemap>
 </sitemapindex>
