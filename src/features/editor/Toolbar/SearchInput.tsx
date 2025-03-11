@@ -4,6 +4,7 @@ import { getHotkeyHandler } from "@mantine/hooks";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useFocusNode } from "src/hooks/useFocusNode";
+import { useTranslation } from "next-i18next";
 
 const StyledSearchWrapper = styled.div`
   position: absolute;
@@ -14,6 +15,7 @@ const StyledSearchWrapper = styled.div`
 `;
 
 export const SearchInput = () => {
+  const { t } = useTranslation("editor");
   const [searchValue, setValue, skip, nodeCount, currentNode] = useFocusNode();
 
   return (
@@ -24,7 +26,7 @@ export const SearchInput = () => {
         id="search-node"
         value={searchValue}
         onChange={e => setValue(e.currentTarget.value)}
-        placeholder="搜索节点..."
+        placeholder={t("editor.search.placeholder")}
         autoComplete="off"
         autoCorrect="off"
         onKeyDown={getHotkeyHandler([["Enter", skip]])}
