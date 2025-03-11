@@ -1,8 +1,7 @@
 import React from "react";
-import Link from "next/link";
-import { Button, Flex, Title, Image } from "@mantine/core";
+import { Button, Flex, Title, Text } from "@mantine/core";
 import styled from "styled-components";
-import { MdChevronRight } from "react-icons/md";
+import { LuRefreshCw } from "react-icons/lu";
 
 const StyledNotSupported = styled.div`
   position: relative;
@@ -132,14 +131,6 @@ const StyledNotSupported = styled.div`
   }
 `;
 
-const StyledInfo = styled.p`
-  max-width: 500px;
-  font-weight: 600;
-  font-size: 26px;
-  text-align: center;
-  color: ${({ theme }) => theme.INTERACTIVE_NORMAL};
-`;
-
 const StyledContent = styled.div`
   position: absolute;
   left: 0;
@@ -154,31 +145,32 @@ const StyledContent = styled.div`
 `;
 
 export const NotSupported = () => {
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   return (
     <StyledNotSupported>
       <StyledContent>
-        <Flex align="center" justify="center" gap="16" mb="lg">
-          <Image src="https://todiagram.com/logo.svg" alt="ToDiagram" w="48" h="48" />
-          <Title fz="48" style={{ pointerEvents: "none", mixBlendMode: "difference" }}>
-            ToDiagram
+        <Flex direction="column" align="center" justify="center" gap="md" maw={600} px="md">
+          <Title fz="32" fw="bold" ta="center" style={{ pointerEvents: "none" }}>
+            数据集过大
           </Title>
-        </Flex>
-        <StyledInfo>
-          Use ToDiagram for larger data size, faster performance, and more features.
-        </StyledInfo>
-        <Link href="https://todiagram.com" target="_blank" passHref rel="noopener">
+          <Text fz="lg" ta="center" c="dimmed">
+            当前数据集太大，无法在可视化视图中显示。请尝试使用较小的数据集，或者使用树形视图模式查看。
+          </Text>
           <Button
             mt="lg"
             size="lg"
-            fw="bolder"
-            color="#FE634E"
-            autoContrast
+            fw="bold"
+            color="teal"
             radius="md"
-            rightSection={<MdChevronRight size="24" />}
+            leftSection={<LuRefreshCw size="20" />}
+            onClick={handleRefresh}
           >
-            Go to ToDiagram
+            刷新页面
           </Button>
-        </Link>
+        </Flex>
       </StyledContent>
 
       <div className="glowing">

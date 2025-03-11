@@ -1,5 +1,6 @@
 import React from "react";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 // 恢复 next-i18next 导入
 import { appWithTranslation } from "next-i18next";
 import { createTheme, MantineProvider } from "@mantine/core";
@@ -17,6 +18,8 @@ import { LanguageProvider } from "src/contexts/LanguageContext";
 // 导入 i18next 初始化
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
+// 导入智能颜色方案管理器
+import { smartColorSchemeManager } from "src/lib/utils/mantineColorScheme";
 // 导入翻译资源
 import enCommon from "../../public/locales/en/common.json";
 import zhCommon from "../../public/locales/zh/common.json";
@@ -102,6 +105,19 @@ const theme = createTheme({
 const IS_PROD = process.env.NODE_ENV === "production";
 
 function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  // 创建智能颜色方案管理器实例
+  const colorSchemeManager = React.useMemo(
+    () =>
+      smartColorSchemeManager({
+        key: "mantine-color-scheme",
+        getPathname: () => router.pathname,
+        dynamicPaths: ["/editor"],
+      }),
+    [router.pathname]
+  );
+
   return (
     <>
       <NextSeo {...SEO} />
@@ -112,7 +128,11 @@ function App({ Component, pageProps }: AppProps) {
         applicationCategory="DeveloperApplication"
         operatingSystem="Web"
       />
-      <MantineProvider defaultColorScheme="light" theme={theme}>
+      <MantineProvider 
+        defaultColorScheme="light" 
+        theme={theme}
+        colorSchemeManager={colorSchemeManager}
+      >
         <ThemeProvider theme={lightTheme}>
           <LanguageProvider>
             <Toaster

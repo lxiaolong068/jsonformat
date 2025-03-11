@@ -4,16 +4,13 @@ import styled from "styled-components";
 import toast from "react-hot-toast";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { FiDownload } from "react-icons/fi";
-import { LuCrown } from "react-icons/lu";
 // 导入翻译hook
 import { useTranslation } from "next-i18next";
 import { type FileFormat, formats } from "src/enums/file.enum";
-import { SearchInput } from "src/features/editor/Toolbar/SearchInput";
 import { JSONCrackLogo } from "src/layout/JsonCrackLogo";
 import useFile from "src/store/useFile";
 import useModal from "src/store/useModal";
 import { FileMenu } from "./FileMenu";
-import { Logo } from "./Logo";
 import { OptionsMenu } from "./OptionsMenu";
 import { ToolsMenu } from "./ToolsMenu";
 import { ViewMenu } from "./ViewMenu";
@@ -62,10 +59,9 @@ export const Toolbar = ({ isWidget = false }: ToolbarProps) => {
 
   return (
     <StyledTools>
-      {isWidget && <Logo />}
       {!isWidget && (
         <Group gap="xs" justify="left" w="100%" style={{ flexWrap: "nowrap" }}>
-          <Logo />
+          <JSONCrackLogo />
 
           <Select
             defaultValue="json"
@@ -84,21 +80,6 @@ export const Toolbar = ({ isWidget = false }: ToolbarProps) => {
         </Group>
       )}
       <Group gap="6" justify="right" w="100%" style={{ flexWrap: "nowrap" }}>
-        {!isWidget && (
-          <Button
-            component="a"
-            href="https://todiagram.com/editor?utm_source=jsoncrack&utm_medium=toolbar"
-            target="_blank"
-            color="green"
-            size="compact-sm"
-            fz="12"
-            fw="600"
-            leftSection={<LuCrown />}
-            mr="6"
-          >
-            {t("editor.toolbar.unlockPro")}
-          </Button>
-        )}
         <StyledToolElement title={t("editor.toolbar.fullscreen")} onClick={fullscreenBrowser}>
           <AiOutlineFullscreen size="18" />
         </StyledToolElement>
@@ -106,7 +87,6 @@ export const Toolbar = ({ isWidget = false }: ToolbarProps) => {
           <FiDownload size="18" />
         </StyledToolElement>
         <OptionsMenu />
-        <SearchInput />
         <ZoomMenu />
       </Group>
     </StyledTools>

@@ -6,16 +6,16 @@ import {
   Flex,
   Stack,
   Title,
+  Text,
   CloseButton,
   FocusTrap,
   Image,
   Divider,
   List,
   ThemeIcon,
-  Anchor,
 } from "@mantine/core";
 import Cookie from "js-cookie";
-import { FaCheckCircle } from "react-icons/fa";
+import { LuCheck } from "react-icons/lu";
 import useConfig from "src/store/useConfig";
 
 export const UpgradeModal = ({ opened, onClose }: ModalProps) => {
@@ -51,54 +51,37 @@ export const UpgradeModal = ({ opened, onClose }: ModalProps) => {
         <Stack gap="24" px="40" py="20" w="100%">
           <Flex justify="space-between" mr="-20">
             <Title c="bright" fw="500" fz="24">
-              Try the new editor!
+              欢迎使用 JSON Format
             </Title>
             <CloseButton onClick={handleCloseModal} />
           </Flex>
+          <Text c="dimmed" fz="md">
+            JSON Format 是一个功能强大的 JSON 可视化和处理工具
+          </Text>
           <List
             spacing="4"
             icon={
-              <ThemeIcon variant="transparent" radius="xl" size="sm" color="green">
-                <FaCheckCircle size="16" />
+              <ThemeIcon variant="transparent" radius="xl" size="sm" color="teal">
+                <LuCheck size="16" />
               </ThemeIcon>
             }
           >
-            <List.Item>Large data support</List.Item>
-            <List.Item>Custom themes</List.Item>
-            <List.Item>Cloud Storage</List.Item>
-            <List.Item>Compare Data</List.Item>
-            <List.Item>AI-Filter</List.Item>
-            <List.Item>API Integration</List.Item>
-            <List.Item>
-              <Anchor
-                href="https://chromewebstore.google.com/detail/todiagram/gpcnkpjdmgihedngamkhendifclghjhn"
-                target="_blank"
-                rel="noopener"
-                c="inherit"
-                td="underline"
-              >
-                Chrome Extension
-              </Anchor>
-            </List.Item>
+            <List.Item>直观的 JSON 数据可视化</List.Item>
+            <List.Item>支持图形视图和树形视图</List.Item>
+            <List.Item>多种格式转换（JSON、CSV、XML、YAML）</List.Item>
+            <List.Item>自动生成多种编程语言的类型定义</List.Item>
+            <List.Item>JSON Schema 验证和生成</List.Item>
+            <List.Item>多语言界面支持</List.Item>
+            <List.Item>完全免费使用</List.Item>
           </List>
           <Button
-            component="a"
-            href="https://todiagram.com/editor?utm_source=jsoncrack&utm_medium=upgrade_modal"
-            target="_blank"
-            color="green"
+            onClick={handleCloseModal}
+            color="teal"
             size="md"
             radius="md"
             fullWidth
-            leftSection={
-              <Image
-                src="https://todiagram.com/logo.svg"
-                alt="logo"
-                w={20}
-                style={{ filter: "grayscale(1) brightness(0) invert(1)" }}
-              />
-            }
           >
-            Open Editor
+            开始使用
           </Button>
         </Stack>
       </Flex>

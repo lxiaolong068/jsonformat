@@ -8,10 +8,12 @@ import type { ElkRoot } from "reaflow/dist/layout/useLayout";
 import { useLongPress } from "use-long-press";
 import { CustomNode } from "src/features/editor/views/GraphView/CustomNode";
 import useGraph from "src/features/editor/views/GraphView/stores/useGraph";
+import { SearchInput } from "src/features/editor/Toolbar/SearchInput";
 import useToggleHide from "src/hooks/useToggleHide";
 import useConfig from "src/store/useConfig";
 import { CustomEdge } from "./CustomEdge";
 import { NotSupported } from "./NotSupported";
+import { OptionsMenu } from "./OptionsMenu";
 
 const StyledEditorWrapper = styled.div<{ $widget: boolean; $showRulers: boolean }>`
   position: absolute;
@@ -66,6 +68,13 @@ const StyledEditorWrapper = styled.div<{ $widget: boolean; $showRulers: boolean 
   @media only screen and (max-width: 320px) {
     height: 100vh;
   }
+`;
+
+const StyledOptionsWrapper = styled.div`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
 `;
 
 const layoutOptions = {
@@ -172,6 +181,10 @@ export const GraphView = ({ isWidget = false }: GraphProps) => {
   return (
     <>
       <LoadingOverlay visible={loading} />
+      <SearchInput />
+      <StyledOptionsWrapper>
+        <OptionsMenu />
+      </StyledOptionsWrapper>
       <StyledEditorWrapper
         $widget={isWidget}
         onContextMenu={e => e.preventDefault()}
